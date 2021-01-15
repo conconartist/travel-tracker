@@ -57,14 +57,36 @@ nav {
 .login-display {
   background-color: deeppink;
   @include align-center-flex();
-  justify-content: center;
-  width: 40%;
+  justify-content: space-around;
+  width: 50%;
   height: 15vh;
+  padding: 5%;
 }
 
 .trip-list-wrapper {
   @extend main;
   background-color: chartreuse;
+}
+//---------login display------//
+
+.container-username {
+  margin: 2%;
+  width: 55%;
+}
+
+.container-password {
+  @extend .container-username;  
+}
+
+.button-login {
+  @extend .container-username;
+  padding: 2%;
+  width: 43%;
+}
+
+.input-login {
+  padding: 2%;
+  width: 60%;
 }
 
 //---------buttons-----------//
