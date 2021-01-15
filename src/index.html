@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Travel Tracker</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
+    <nav>
+      <button id="button-menu">Menu</button>
+      <h1>TRAVEL TRACKER</h1>
+      <button id="button-home">Home</button>
+    </nav>
+    <main>
+      <header>
+        <h2>Your Trips</h2>
+      </header>
+      <p class="total-amount-spent">Total Amount Spent: </p>
+      <!-- should i use template tag instead: -->
+      <div class="dashboard-wrapper">
+        <section class="upcoming-trips">
+          <h3 class="heading-upcoming-trips">Upcoming Trips</h3>
+          <div class="trip-list-wrapper">
+            <p class="display-date">Date:</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration:</p>
+            <p class="display-number-travelers"># of Travelers:</p>
+          </div>
+        </section>
+        <section class="pending-trips">
+          <h3 class="heading-pending-trips">Pending Trips</h3>
+          <div class="trip-list-wrapper">
+            <p class="display-date">Date:</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration:</p>
+            <p class="display-number-travelers"># of Travelers:</p>
+          </div>
+        </section>
+        <section class="book-trip">
+          <h3 class="heading-book-trip">Book A Trip</h4>
+          <div class="trip-list-wrapper">
+            <p class="display-date">Date:</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration:</p>
+            <p class="display-number-travelers"># of Travelers:</p>
+            <p class="cost-calculator">Cost Calculator:</p>
+          </div>
+        </section>
+        <section class="past-trips">
+          <h3 class="heading-past-trip">Past Trips</h4>
+          <div class="trip-list-wrapper">
+            <p class="display-date">Date:</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration:</p>
+            <p class="display-number-travelers"># of Travelers:</p>
+          </div>
+        </section>
+      </div>
+    </main>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>
