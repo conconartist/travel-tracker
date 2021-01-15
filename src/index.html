@@ -25,44 +25,50 @@
           <button class="button-login">LOGIN</button>
           <p class="error-message"></p>
       </section>
-      <!-- should i use template tag instead: -->
+      
       <div class="dashboard-wrapper">
         <p class="total-amount-spent">Total Amount Spent: </p>
         <section class="upcoming-trips">
           <h3 class="heading-upcoming-trips">Upcoming Trips</h3>
           <div class="trip-list-wrapper">
-            <p class="display-date">Date:</p>
-            <p class="display-destination">Destination:</p>
-            <p class="display-duration">Duration:</p>
-            <p class="display-number-travelers"># of Travelers:</p>
+            <template id="card-upcoming-trips">
+              <p class="display-date">Date:</p>
+              <p class="display-destination">Destination:</p>
+              <p class="display-duration">Duration:</p>
+              <p class="display-number-travelers"># of Travelers:</p>
+            </template>
           </div>
         </section>
         <section class="pending-trips">
           <h3 class="heading-pending-trips">Pending Trips</h3>
           <div class="trip-list-wrapper">
-            <p class="display-date">Date:</p>
-            <p class="display-destination">Destination:</p>
-            <p class="display-duration">Duration:</p>
-            <p class="display-number-travelers"># of Travelers:</p>
+            <template id="card-pending-trips">
+              <p class="display-date">Date:</p>
+              <p class="display-destination">Destination:</p>
+              <p class="display-duration">Duration:</p>
+              <p class="display-number-travelers"># of Travelers:</p>
+            </template>
           </div>
         </section>
         <section class="book-trip">
           <h3 class="heading-book-trip">Book A Trip</h4>
-          <div class="trip-list-wrapper">
-            <p class="display-date">Date:</p>
-            <p class="display-destination">Destination:</p>
-            <p class="display-duration">Duration:</p>
-            <p class="display-number-travelers"># of Travelers:</p>
-            <p class="cost-calculator">Cost Calculator:</p>
+          <div class="trip-list-wrapper card-book-trip">
+              <p class="display-date">Date:</p>
+              <p class="display-destination">Destination:</p>
+              <p class="display-duration">Duration:</p>
+              <p class="display-number-travelers"># of Travelers:</p>
+              <p class="cost-calculator">Cost Calculator:</p>
           </div>
         </section>
         <section class="past-trips">
           <h3 class="heading-past-trip">Past Trips</h4>
           <div class="trip-list-wrapper">
-            <p class="display-date">Date:</p>
-            <p class="display-destination">Destination:</p>
-            <p class="display-duration">Duration:</p>
-            <p class="display-number-travelers"># of Travelers:</p>
+            <template id="card-past-trip">
+              <p class="display-date">Date:</p>
+              <p class="display-destination">Destination:</p>
+              <p class="display-duration">Duration:</p>
+              <p class="display-number-travelers"># of Travelers:</p>
+            </template>
           </div>
         </section>
       </div>
