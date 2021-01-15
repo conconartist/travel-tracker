@@ -5,17 +5,29 @@
   </head>
   <body>
     <nav>
-      <button id="button-menu">Menu</button>
+      <button id="button-menu" class="button-nav">Menu</button>
       <h1>TRAVEL TRACKER</h1>
-      <button id="button-home">Home</button>
+      <button id="button-home" class="button-nav">Home</button>
     </nav>
     <main>
       <header>
-        <h2>Your Trips</h2>
+        <h2>Your Trips/ Login</h2>
       </header>
-      <p class="total-amount-spent">Total Amount Spent: </p>
+      <section class="login-display">
+        <div class="container-username">
+          <label for="input-username">Username:</label>
+          <input id="input-username" class="input-login" type="text" name="" value="" placeholder="Enter Username">
+        </div>
+        <div class="container-password">
+          <label for="input-password">Password:</label>
+          <input id="input-password" class="input-login" type="text" name="" value="" placeholder="Enter Password">
+        </div>
+          <button class="button-login">LOGIN</button>
+          <p class="error-message"></p>
+      </section>
       <!-- should i use template tag instead: -->
       <div class="dashboard-wrapper">
+        <p class="total-amount-spent">Total Amount Spent: </p>
         <section class="upcoming-trips">
           <h3 class="heading-upcoming-trips">Upcoming Trips</h3>
           <div class="trip-list-wrapper">
