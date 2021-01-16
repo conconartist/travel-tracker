@@ -1,37 +1,39 @@
 import { expect } from 'chai';
 
 import Trip from '../src/Trip.js';
-import Traveler from '../src/Traveler.js'
+import Traveler from '../src/Traveler.js';
+import travelers from '../test/test-data.js';
 import tripData from '../test/test-data.js';
 
 let trip;
 
 describe('Trip', () => {
   beforeEach(() => {
-    traveler = new Traveler();
-    trip = new Trip(tripData);
+    traveler = new Traveler(travelers[1]);
+    trip1 = new Trip(tripData[0]);
   });
   it('should have an id', () => {
-      expect(trip[0].id).to.equal();
+      expect(trip1.id).to.equal(1);
   });
   it('should be associated with a user', () => {
-    expect(trip.userID).to.equal();
+    expect(trip1.userID).to.equal(3);
+  });
   it('should have a destination', () => {
-    expect(trip.destinationID).to.equal();
+    expect(trip1.destinationID).to.equal(49);
+  });
   it('should have a number of travelers', () => {
-    expect(trip.travelers).to.equal();
-  })
+    expect(trip1.travelers).to.equal(1);
+  });
   it('should have a start date', () => {
-    expect(trip.date).to.equal();
-  })
+    expect(trip1.date).to.equal("2019/09/16");
+  });
   it('should have a duration', () => {
-    expect(trip.duration).to.equal();
-  })
+    expect(trip1.duration).to.equal(8);
+  });
   it('should have a status of pending or approved', () => {
-    expect(trip.status).to.equal();
-  })
+    expect(trip1.status).to.equal("approved");
+  });
   it('should have a list of suggested activities', () => {
-      expect(trip.suggestedActivities).to.eql([]);
-  })
-  }
-})
+    expect(trip1.suggestedActivities).to.eql([]);
+  });
+});
