@@ -2,10 +2,10 @@ import { expect } from 'chai';
 
 import Trip from '../src/Trip.js';
 import Traveler from '../src/Traveler.js';
-import travelers from '../test/test-data.js';
-import tripData from '../test/test-data.js';
+import travelers from '../test/data/traveler-data.js';
+import tripData from '../test/data/trip-data.js';
 
-let trip;
+let trip1;
 
 describe('Trip', () => {
   beforeEach(() => {
