@@ -1,7 +1,19 @@
+let traveler1 = {
+    "id": 17,
+    "name": "Julian Ullyott",
+    "travelerType": "relaxer"
+}
+
+let traveler2 = {
+    "id": 36,
+    "name": "Lorettalorna Borell",
+    "travelerType": "foodie"
+}
+
 let tripData = [
     {
         "id": 1,
-        "userID": 44,
+        "userID": 3,
         "destinationID": 49,
         "travelers": 1,
         "date": "2019/09/16",
@@ -11,7 +23,7 @@ let tripData = [
     },
     {
         "id": 2,
-        "userID": 35,
+        "userID": 3,
         "destinationID": 25,
         "travelers": 5,
         "date": "2020/10/04",
