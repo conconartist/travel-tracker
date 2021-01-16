@@ -1,12 +1,12 @@
 class Traveler {
-  constructor(id, name, travelerType, password, trips, amtSpent, totalAmtSpent) {
-      this.id = id;
-      this.name = name;
-      this.travelerType = travelerType;
-      this.password = password;
-      this.trips = trips;
-      this.amtSpent = amtSpent; 
-      this.totalAmtSpent = totalAmtSpent;
+  constructor(travelerData) {
+      this.id = travelerData.id;
+      this.name = travelerData.name;
+      this.travelerType = travelerData.travelerType;
+      this.password = travelerData.password;
+      this.trips = travelerData.trips;
+      this.amtSpent = travelerData.amtSpent; 
+      this.totalAmtSpent = travelerData.totalAmtSpent;
   }
   determineTotalAmtSpent() {
       //this year
