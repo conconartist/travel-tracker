@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import Destination from '../src/Destination.js';
-import destinations from '../test/test-data.js'
+import destinations from '../test/data/destination-data.js'
 
 let destination1, destination2, destination3;
 
@@ -12,7 +12,6 @@ describe('Destination', () => {
         destination3 = new Destination(destinations[2]);
     });
     it('should have an id', () => {
-        console.log(destinations[0])
         expect(destination1.id).to.equal(destinations[0].id);
     });
     it('should have a destination property', () => {
