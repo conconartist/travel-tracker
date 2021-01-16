@@ -1,11 +1,12 @@
 class Destination {
-  constructor(id, destination, estimatedLodgingCostPerDay, estimatedFlightCostPerPerson, image, alt) {
-      this.id = id;
-      this.destination = destination;
-      this.estimatedLodgingCostPerDay = estimatedLodgingCostPerDay;
-      this.estimatedFlightCostPerPerson = estimatedFlightCostPerPerson;
-      this.image = image;
-      this.alt = alt;
+  constructor(destinationData) {
+    console.log(destinationData)
+      this.id = destinationData.id;
+      this.destination = destinationData.destination;
+      this.estimatedLodgingCostPerDay = destinationData.estimatedLodgingCostPerDay;
+      this.estimatedFlightCostPerPerson = destinationData.estimatedFlightCostPerPerson;
+      this.image = destinationData.image;
+      this.alt = destinationData.alt;
   }
 }
 
