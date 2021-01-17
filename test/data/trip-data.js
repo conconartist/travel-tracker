@@ -7,7 +7,7 @@ let tripData = [
         "date": "2019/09/16",
         "duration": 8,
         "status": "approved",
-        "suggestedActivities": []
+        "suggestedActivities": ["shopping", "dining"]
     },
     {
         "id": 2,
@@ -26,7 +26,7 @@ let tripData = [
         "travelers": 4,
         "date": "2020/05/22",
         "duration": 17,
-        "status": "pending",
+        "status": "approved",
         "suggestedActivities": []
     },
     {

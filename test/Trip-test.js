@@ -1,15 +1,12 @@
 import { expect } from 'chai';
 
 import Trip from '../src/Trip.js';
-import Traveler from '../src/Traveler.js';
-import travelers from '../test/data/traveler-data.js';
 import tripData from '../test/data/trip-data.js';
 
 let trip1;
 
 describe('Trip', () => {
   beforeEach(() => {
-    // traveler = new Traveler(travelers[0]);
     trip1 = new Trip(tripData[0]);
   });
   it('should have an id', () => {
@@ -34,6 +31,6 @@ describe('Trip', () => {
     expect(trip1.status).to.equal("approved");
   });
   it('should have a list of suggested activities', () => {
-    expect(trip1.suggestedActivities).to.eql([]);
+    expect(trip1.suggestedActivities).to.eql(["shopping", "dining"]);
   });
 });
