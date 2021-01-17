@@ -4,16 +4,38 @@ class Traveler {
       this.name = travelerData.name;
       this.travelerType = travelerData.travelerType;
       this.password = travelerData.password;
-      this.trips = travelerData.trips;
-      this.amtSpent = travelerData.amtSpent; 
-      this.totalAmtSpent = travelerData.totalAmtSpent;
+      this.trips = [];
   }
-  determineTotalAmtSpent() {
-      //this year
-      //10% agent fee
+  filterTrips(tripData) {
+      this.trips = tripData.filter(trip => trip.userID === this.id);
+      return this.trips;
+      //separate into all/ pending/ present/ future?
   }
-  loginTraveler() {
-      //enter username and password === traveler
+  determineTotalAmtSpent(tripData, year, destinations) {
+      let userTrips = this.filterTrips(tripData);
+      let tripsInYear = userTrips.filter(trip => trip.date.includes(year) && trip.status === 'approved');
+      let getCostStats = tripsInYear.map(trip => {
+        let tripCost = {};
+        destinations.forEach(destination => {
+            if(trip.destinationID === destination.id) {
+              tripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
+              tripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+              tripCost.agentFee = (tripCost.totalLodging + tripCost.totalFlightCost) * 0.1;
+            }
+        })
+        return tripCost;
+      })
+      let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
+          console.log(costStat)
+        costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;
+        console.log(costSum)
+        return costSum;
+      }, 0)
+      console.log(totalCostPerGivenYear)
+      return totalCostPerGivenYear;
+  }
+  addTrip() {
+      //?
   }
 }
 
