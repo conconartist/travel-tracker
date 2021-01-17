@@ -79,4 +79,7 @@ describe('Traveler', () => {
     expect(traveler1.determineTotalAmtSpent(tripData, '2020', destinations)).to.equal(10241);
 
   })
+  it('should have a method to calculate the cost of a new trip', () => {
+    expect(traveler1.getTripCostEstimate({destinationID: 51, duration: 5, travelers: 2}, destinations)).to.equal(1485);
+  })
 });
