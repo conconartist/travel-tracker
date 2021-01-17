@@ -9,12 +9,6 @@ class Trip {
       this.status = tripData.status;
       this.suggestedActivities = tripData.suggestedActivities;
   }
-  getTodaysDate() {
-
-  }
-  getTripStatus() {
-
-  }
   updateTripStatus() {
       //for agent 
   }
