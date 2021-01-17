@@ -10,7 +10,7 @@ let traveler1, traveler2; //let tripData?
 describe('Traveler', () => {
   beforeEach(() => {
     traveler1 = new Traveler(travelers[0], tripData);
-    traveler2 = new Traveler(travelers[1]);
+    traveler2 = new Traveler(travelers[1], tripData);
   });
 
   it('should have an id', () => {
@@ -31,15 +31,52 @@ describe('Traveler', () => {
     expect(traveler1.password).to.equal();
   });
   it('should have a list of trips', () => {
-    expect(traveler1.trips).to.eql([]);
+    traveler1.filterTrips(tripData);
+    expect(traveler1.trips).to.eql([{
+      "id": 1,
+      "userID": 3,
+      "destinationID": 49,
+      "travelers": 1,
+      "date": "2019/09/16",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": ["shopping", "dining"]
+  },
+  {
+      "id": 2,
+      "userID": 3,
+      "destinationID": 25,
+      "travelers": 5,
+      "date": "2020/10/04",
+      "duration": 18,
+      "status": "pending",
+      "suggestedActivities": []
+  },
+  {
+      "id": 3,
+      "userID": 3,
+      "destinationID": 22,
+      "travelers": 4,
+      "date": "2020/05/22",
+      "duration": 17,
+      "status": "approved",
+      "suggestedActivities": []
+  }, 
+  {
+    "id": 6,
+    "userID": 3,
+    "destinationID": 35,
+    "travelers": 3,
+    "date": "2020/06/29",
+    "duration": 9,
+    "status": "approved",
+    "suggestedActivities": []
+}]);
   });
-  it('should have a total amount spent on trips for the year, including a 10% agent fee', () => {
-    expect(traveler1.totalAmtSpent).to.equal();
-  });
-  it('should be able to determine the total amount spent on trips, including the agent fee', () => {
-    expect(traveler1.determineTotalAmtSpent(tripData, 2020, destinations)).to.equal();
-  })
-  it('should be able to login to the dashboard with a password and user ID', () => {
-    expect(traveler1.loginTraveler).to.equal();
+
+  it('should be able to determine the total amount spent on trips, including the agent fee, for a specified year', () => {
+    expect(traveler1.determineTotalAmtSpent(tripData, '2019', destinations)).to.equal(2200);
+    expect(traveler1.determineTotalAmtSpent(tripData, '2020', destinations)).to.equal(10241);
+
   })
 });
