@@ -1,6 +1,5 @@
 class Destination {
   constructor(destinationData) {
-    console.log(destinationData)
       this.id = destinationData.id;
       this.destination = destinationData.destination;
       this.estimatedLodgingCostPerDay = destinationData.estimatedLodgingCostPerDay;
