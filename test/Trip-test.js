@@ -9,7 +9,7 @@ let trip1;
 
 describe('Trip', () => {
   beforeEach(() => {
-    traveler = new Traveler(travelers[1]);
+    // traveler = new Traveler(travelers[0]);
     trip1 = new Trip(tripData[0]);
   });
   it('should have an id', () => {

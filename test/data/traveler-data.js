@@ -1,5 +1,5 @@
 let travelers = [
-  { "id": 17,
+  { "id": 3,
     "name": "Julian Ullyott",
     "travelerType": "relaxer"
   },
@@ -7,6 +7,11 @@ let travelers = [
     "id": 36,
     "name": "Lorettalorna Borell",
     "travelerType": "foodie"
+  }, 
+  {
+    "id": 42,
+    "name": "Ron Burgundy",
+    "travelerType": "business casual"
   }
 ]
 

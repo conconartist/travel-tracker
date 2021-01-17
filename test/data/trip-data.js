@@ -31,7 +31,7 @@ let tripData = [
     },
     {
         "id": 4,
-        "userID": 43,
+        "userID": 42,
         "destinationID": 14,
         "travelers": 2,
         "date": "2020/02/25",
@@ -51,7 +51,7 @@ let tripData = [
     },
     {
         "id": 6,
-        "userID": 29,
+        "userID": 3,
         "destinationID": 35,
         "travelers": 3,
         "date": "2020/06/29",
@@ -61,7 +61,7 @@ let tripData = [
     },
     {
         "id": 7,
-        "userID": 37,
+        "userID": 42,
         "destinationID": 17,
         "travelers": 5,
         "date": "2020/5/28",
@@ -81,8 +81,8 @@ let tripData = [
     },
     {
         "id": 9,
-        "userID": 24,
-        "destinationID": 19,
+        "userID": 36,
+        "destinationID": 51,
         "travelers": 5,
         "date": "2019/12/19",
         "duration": 19,
@@ -91,7 +91,7 @@ let tripData = [
     },
     {
         "id": 10,
-        "userID": 9,
+        "userID": 36,
         "destinationID": 50,
         "travelers": 6,
         "date": "2020/07/23",
