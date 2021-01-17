@@ -26,13 +26,18 @@ class Traveler {
         return tripCost;
       })
       let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
-          console.log(costStat)
         costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;
-        console.log(costSum)
         return costSum;
       }, 0)
-      console.log(totalCostPerGivenYear)
       return totalCostPerGivenYear;
+  }
+  getTripCostEstimate(trip, destinations) {
+    let findDestination = destinations.find(destination => destination.id === trip.destinationID);
+    let lodgingEstimate = findDestination.estimatedLodgingCostPerDay * trip.duration;
+    let flightEstimate = findDestination.estimatedFlightCostPerPerson * trip.travelers;
+    let agentFee = (lodgingEstimate + flightEstimate) * 0.1;
+    let tripEstimate = lodgingEstimate + flightEstimate + agentFee;
+    return tripEstimate;
   }
   addTrip() {
       //?
