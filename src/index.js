@@ -3,6 +3,7 @@ import './css/base.scss';
 import domUpdates from './domUpdates.js';
 
 import Traveler from './Traveler.js';
+import TripRepository from './TripRepository.js'
 import Trip from './Trip.js';
 import Destination from './Destination.js';
 
@@ -28,15 +29,15 @@ let traveler, trips, destinations;
 //if password matches, add hidden to login display class and remove hidden from dashboard-wrapper
 
 //DASHBOARD
-let today = new Date().toLocaleDateString();
-
+// let today = new Date().toISOString().slice(0, 10);
+let today = "2020/03/08";
+console.log(today)
 const instantiateUser = (travelers, userLogin) => {
     let travelerId = Number(userLogin.slice(8))
     let travelerInfo = travelers.find(traveler => {
         return traveler.id === travelerId;
     })
     traveler = new Traveler({id: travelerId, name: travelerInfo.name, travelerType: travelerInfo.travelerType});
-    console.log(traveler)
 }
 const getData = () => {
     let userPromise = fetch('http://localhost:3001/api/v1/travelers/')
@@ -53,11 +54,9 @@ const getData = () => {
           trips = dataset[1].trips;
           destinations = dataset[2].destinations;
           domUpdates.showPendingTrips(traveler, trips);
-          console.log(today)
           domUpdates.showUpcomingTrips(traveler, trips, today);
-          console.log(today)
-          console.log('showupcoming')
-          domUpdates.displayPastTrips(trips, today);
+          domUpdates.showPastTrips(traveler, trips, today);
+          console.log('pastTrips')
           domUpdates.displayBookTrip();
           domUpdates.displayTotalAnnualAmt(trips, destinations);
           console.log(traveler)

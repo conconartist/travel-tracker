@@ -22,26 +22,30 @@ class Traveler {
   }  
   filterUpcomingTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.upcomingTrips = this.trips.filter(trip => trip.date >= dateToday);
+    this.upcomingTrips = this.trips.filter(trip => Date.parse(trip.date) > Date.parse(dateToday));
     return this.upcomingTrips;
   }
   filterPastTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.pastTrips = this.trips.filter(trip => trip.date <= dateToday)
+    this.pastTrips = this.trips.filter(trip => Date.parse(trip.date) < Date.parse(dateToday));
+    return this.pastTrips;
   }
+
+  //filter Today's trip?
+
   determineTotalAmtSpent(tripData, year, destinations) {
       let userTrips = this.filterTrips(tripData);
       let tripsInYear = userTrips.filter(trip => trip.date.includes(year) && trip.status === 'approved');
       let getCostStats = tripsInYear.map(trip => {
-        let tripCost = {};
+        let totalTripCost = {};
         destinations.forEach(destination => {
             if(trip.destinationID === destination.id) {
-              tripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
-              tripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-              tripCost.agentFee = (tripCost.totalLodging + tripCost.totalFlightCost) * 0.1;
+              totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
+              totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+              totalTripCost.agentFee = (tripCost.totalLodging + tripCost.totalFlightCost) * 0.1;
             }
         })
-        return tripCost;
+        return totalTripCost;
       });
       let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
         costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;

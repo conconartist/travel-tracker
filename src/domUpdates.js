@@ -23,7 +23,6 @@ let domUpdates = {
     
     showUpcomingTrips(traveler, tripData, dateToday) {
         let upcomingTripsSection = document.querySelector('.card-upcoming-trips');
-        upcomingTripsSection = '';
         let upcomingTripsList = traveler.filterUpcomingTrips(tripData, dateToday);
         upcomingTripsList.forEach(trip => {
             upcomingTripsSection.insertAdjacentHTML('afterbegin', `
@@ -36,9 +35,7 @@ let domUpdates = {
     },
 
     showPendingTrips(traveler, tripData) {
-        console.log("showmepending")
         let pendingTripsSection = document.querySelector('.card-pending-trips');
-        // pendingTripsSection.innerHTML = '';
         let pendingTripsList = traveler.filterPendingTrips(tripData);
         pendingTripsList.forEach(trip => {
             pendingTripsSection.insertAdjacentHTML('afterbegin', `
@@ -50,12 +47,9 @@ let domUpdates = {
         })
     },
 
-    showPastTrips(trips) {
-        console.log('hi')
+    showPastTrips(traveler, tripData, dateToday) {
         let pastTripsSection = document.querySelector('.card-past-trip');
-        pastTripsSection.innerHTML = '';
-        let filteredTrips = traveler.filterTrips(trips)
-        let pastTrips = filteredTrips.filter(trip => trip.date <= today) 
+        let pastTrips = traveler.filterPastTrips(tripData, dateToday);
         pastTrips.forEach(trip => {
             pastTripsSection.insertAdjacentHTML('afterbegin', `
             <p class="display-date">Date: ${trip.date}</p>
