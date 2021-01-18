@@ -1,13 +1,22 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+
+import Traveler from './Traveler.js';
+import Trip from './Trip.js';
+import Destination from './Destination.js';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+//query selectors:
+const homeButton = document.querySelector('#button-home');
+const totalAmtDisplay = document.querySelector('.total-amount-spent');
+const upcomingTripsHeader = document.querySelector('.heading-upcoming-trips');
+const pendingTripsHeader = document.querySelector('.heading-pending-trips');
+const bookTripHeader = document.querySelector('.heading-book-trip');
+const pastTripsHeader = document.querySelector('.heading-past-trip');
+
+let traveler, trip, destination;
+
 //LOGIN FUNCTIONALITY
 //
 //On load, the login screen should appear, hiding the .dashboard-wrapper
@@ -17,10 +26,35 @@ console.log('This is the JavaScript entry file - your code begins here.');
 //if password matches, add hidden to login display class and remove hidden from dashboard-wrapper
 
 //DASHBOARD
+const getData = () => {
+    //fetch requests for user data
+    //instantiate user (default user until login functionality?)
+}
 
+const openDashboard = () => {
+    getData();
+}
+
+const goHome = () => {
+    //add hidden to all display sections
+    //reveal headers
+}
+
+const showUpcomingTrips = () => {
+    //reveal upcomingtrips section
+    //hide other section displays
+    //or refactor to toggle for all displays?
+}
 //All categories should have display functionality
 //Each category header (h3) is a button
 //when button is clicked, it reveals the pertinent info
 //when another button is clicked, it toggles the hidden property
 
 //
+
+//event listeners:
+//window.onload = login page?
+//login page -> openDashboard();
+window.onload = openDashboard();
+homeButton.addEventListener('click', goHome);
+upcomingTripsHeader.addEventListener('click', showUpcomingTrips);
