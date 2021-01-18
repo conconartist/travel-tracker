@@ -3,7 +3,7 @@ class Traveler {
       this.id = travelerData.id;
       this.name = travelerData.name;
       this.travelerType = travelerData.travelerType;
-      this.password = travelerData.password;
+      this.password = "travel2020";
       this.trips = [];
   }
   filterTrips(tripData) {
