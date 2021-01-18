@@ -24,11 +24,11 @@ class Traveler {
             }
         })
         return tripCost;
-      })
+      });
       let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
         costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;
         return costSum;
-      }, 0)
+      }, 0);
       return totalCostPerGivenYear;
   }
   getTripCostEstimate(trip, destinations) {
