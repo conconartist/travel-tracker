@@ -1,6 +1,6 @@
 import './css/base.scss';
 
-import domUpdates from './domUpdates';
+import domUpdates from './domUpdates.js';
 
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
@@ -29,27 +29,37 @@ let traveler, trips, destinations;
 
 //DASHBOARD
 let today = new Date().toLocaleDateString();
+
+const instantiateUser = (travelers, userLogin) => {
+    let travelerId = Number(userLogin.slice(8))
+    let travelerInfo = travelers.find(traveler => {
+        return traveler.id === travelerId;
+    })
+    traveler = new Traveler({id: travelerId, name: travelerInfo.name, travelerType: travelerInfo.travelerType});
+    console.log(traveler)
+}
 const getData = () => {
-    let userPromise = fetch('http://localhost:3001/api/v1/travelers/25')
+    let userPromise = fetch('http://localhost:3001/api/v1/travelers/')
       .then(res => res.json());
     let tripsPromise = fetch('http://localhost:3001/api/v1/trips')
       .then(res => res.json());
     let destinationsPromise = fetch('http://localhost:3001/api/v1/destinations')
       .then(res => res.json());
-    //instantiate user (default user until login functionality?)
+  
     Promise.all([userPromise, tripsPromise, destinationsPromise])
       .then(dataset => {
-          traveler = new Traveler(dataset[0]);
-          console.log(traveler)
+          instantiateUser(dataset[0].travelers, 'traveler25')
           //refactor for login input
-          trips = dataset[1];
-          console.log(trips)
-          destinations = dataset[2];
-          console.log(destinations)
-          domUpdates.displayPendingTrips(trips)
-          domUpdates.displayPastTrips(trips, today)
+          trips = dataset[1].trips;
+          destinations = dataset[2].destinations;
+          console.log(traveler.filterAllTrips(trips))
+          domUpdates.displayPendingTrips(traveler, trips);
+          console.log('pendingtrip')
+          domUpdates.showUpcomingTrips(traveler, trips, today);
+          domUpdates.displayPastTrips(trips, today);
           domUpdates.displayBookTrip();
           domUpdates.displayTotalAnnualAmt(trips, destinations);
+          console.log(traveler)
       })
       .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
@@ -72,12 +82,13 @@ const submitBookingRequest = () => {
     domUpdates.submitRequest();
 }
 
-const displayPendingTrips = (trips) => {
-    domUpdates.showPendingTrips(trips)
+const displayPendingTrips = (traveler, trips) => {
+    console.log("displayPending")
+    domUpdates.showPendingTrips(traveler, trips)
 }
 
-const displayUpcomingTrips = () => {
-    domUpdates.showUpcomingTrips(today);
+const displayUpcomingTrips = (traveler, trips, today) => {
+    domUpdates.showUpcomingTrips(traveler, trips, today);
 }
 
 const displayBookTripForm = () => {
@@ -85,7 +96,7 @@ const displayBookTripForm = () => {
 }
 
 const displayPastTrips = () => {
-    domUpdates.showPastTrips(trips)
+    domUpdates.showPastTrips(trips, today)
 }
 //window.onload = login page?
 //login page -> openDashboard();
