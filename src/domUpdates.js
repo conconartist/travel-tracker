@@ -17,7 +17,8 @@ let domUpdates = {
     }, 
 
     displayBookTrip() {
-        let bookTripSection = document.querySelector('.card-book-trip');
+        console.log('hi')
+        // let bookTripSection = document.querySelector('.card-book-trip');
         //remove hidden class 
     },
     
@@ -60,9 +61,7 @@ let domUpdates = {
         })
     },
 
-    displayTotalAnnualAmt(tripData, destinations) {
-        let year = '2020';
-        console.log(traveler)
+    displayTotalAnnualAmt(traveler, tripData, year, destinations) {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
         totalSpentDisplay.innerHTML += `${totalAmtSpent}`;
