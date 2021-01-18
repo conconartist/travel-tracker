@@ -52,10 +52,11 @@ const getData = () => {
           //refactor for login input
           trips = dataset[1].trips;
           destinations = dataset[2].destinations;
-          console.log(traveler.filterAllTrips(trips))
-          domUpdates.displayPendingTrips(traveler, trips);
-          console.log('pendingtrip')
+          domUpdates.showPendingTrips(traveler, trips);
+          console.log(today)
           domUpdates.showUpcomingTrips(traveler, trips, today);
+          console.log(today)
+          console.log('showupcoming')
           domUpdates.displayPastTrips(trips, today);
           domUpdates.displayBookTrip();
           domUpdates.displayTotalAnnualAmt(trips, destinations);
