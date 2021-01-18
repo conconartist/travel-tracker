@@ -17,7 +17,7 @@ const pendingTripsHeader = document.querySelector('.heading-pending-trips');
 const bookTripHeader = document.querySelector('.heading-book-trip');
 const pastTripsHeader = document.querySelector('.heading-past-trip');
 
-let traveler, trip, destination;
+let traveler, trips, destinations;
 
 //LOGIN FUNCTIONALITY
 //
@@ -28,14 +28,35 @@ let traveler, trip, destination;
 //if password matches, add hidden to login display class and remove hidden from dashboard-wrapper
 
 //DASHBOARD
+let today = new Date().toLocaleDateString();
 const getData = () => {
-    //fetch requests for user data
+    let userPromise = fetch('http://localhost:3001/api/v1/travelers/25')
+      .then(res => res.json());
+    let tripsPromise = fetch('http://localhost:3001/api/v1/trips')
+      .then(res => res.json());
+    let destinationsPromise = fetch('http://localhost:3001/api/v1/destinations')
+      .then(res => res.json());
     //instantiate user (default user until login functionality?)
+    Promise.all([userPromise, tripsPromise, destinationsPromise])
+      .then(dataset => {
+          traveler = new Traveler(dataset[0]);
+          console.log(traveler)
+          //refactor for login input
+          trips = dataset[1];
+          console.log(trips)
+          destinations = dataset[2];
+          console.log(destinations)
+          domUpdates.displayPendingTrips(trips)
+          domUpdates.displayPastTrips(trips, today)
+          domUpdates.displayBookTrip();
+          domUpdates.displayTotalAnnualAmt(trips, destinations);
+      })
+      .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
+
 
 const openDashboard = () => {
     getData();
-    domUpdates.displayTotalAnnualAmt();
 }
 
 const goHome = () => {
@@ -43,21 +64,36 @@ const goHome = () => {
     //reveal headers
 }
 
-//All categories should have display functionality
-//Each category header (h3) is a button
-//when button is clicked, it reveals the pertinent info
-//when another button is clicked, it toggles the hidden property
+const calculateCostEstimate = (trip, destinations) => {
+    domUpdates.showCostEstimate(trip, destinations);
+}
 
-//
+const submitBookingRequest = () => {
+    domUpdates.submitRequest();
+}
 
+const displayPendingTrips = (trips) => {
+    domUpdates.showPendingTrips(trips)
+}
 
+const displayUpcomingTrips = () => {
+    domUpdates.showUpcomingTrips(today);
+}
+
+const displayBookTripForm = () => {
+    domUpdates.displayBookTrip();
+}
+
+const displayPastTrips = () => {
+    domUpdates.showPastTrips(trips)
+}
 //window.onload = login page?
 //login page -> openDashboard();
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
-calculateCostButton.addEventListener('click', domUpdates.showCostEstimate)
-submitRequestButton.addEventListener('click', domUpdates.submitRequest)
-upcomingTripsHeader.addEventListener('click', domUpdates.showTripSection);
-pendingTripsHeader.addEventListener('click', domUpdates.showTripSection);
-bookTripHeader.addEventListener('click', domUpdates.showTripSection);
-pastTripsHeader.addEventListener('click', domUpdates.showTripSection);
+calculateCostButton.addEventListener('click', calculateCostEstimate)
+submitRequestButton.addEventListener('click', submitBookingRequest)
+upcomingTripsHeader.addEventListener('click', displayUpcomingTrips);
+pendingTripsHeader.addEventListener('click', displayPendingTrips);
+bookTripHeader.addEventListener('click', displayBookTripForm);
+pastTripsHeader.addEventListener('click',displayPastTrips);
