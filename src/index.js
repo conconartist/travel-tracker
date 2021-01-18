@@ -40,10 +40,10 @@ const goHome = () => {
     //reveal headers
 }
 
-const showUpcomingTrips = () => {
-    //reveal upcomingtrips section
+const showTripSection = (tripSection) => {
+    //reveal section display
     //hide other section displays
-    //or refactor to toggle for all displays?
+    //toggle to expand and hide 
 }
 //All categories should have display functionality
 //Each category header (h3) is a button
@@ -57,4 +57,7 @@ const showUpcomingTrips = () => {
 //login page -> openDashboard();
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
-upcomingTripsHeader.addEventListener('click', showUpcomingTrips);
+upcomingTripsHeader.addEventListener('click', showTripSection);
+pendingTripsHeader.addEventListener('click', showTripSection);
+bookTripHeader.addEventListener('click', showTripSection);
+pastTripsHeader.addEventListener('click', showTripSection);
