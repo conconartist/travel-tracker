@@ -1,3 +1,5 @@
+import Traveler from './Traveler.js';
+
 let domUpdates = {
 
     showTripSection(tripSection) {
@@ -9,12 +11,17 @@ let domUpdates = {
         //toggle to expand and hide 
     },
 
+    displayMessage(message) {
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.innerHTML = `<p class="message">${message}</p>`
+    }, 
+
     displayBookTrip() {
         let bookTripSection = document.querySelector('.card-book-trip');
         //remove hidden class 
     },
     
-    displayUpcomingTrips(dateToday) {
+    showUpcomingTrips(dateToday) {
         let upcomingTripsSection = document.querySelector('.card-upcoming-trips');
         upcomingTripsSection = '';
         let upcomingTripsList = traveler.filterTrips(tripData).filter(trip => trip.date >= dateToday);
@@ -28,10 +35,11 @@ let domUpdates = {
         })
     },
 
-    displayPendingTrips(traveler) {
+    showPendingTrips(tripData) {
         let pendingTripsSection = document.querySelector('.card-pending-trips');
-        pendingTripsSection.innerHTML = '';
-        let pendingTripsList = traveler.filterTrips(tripData).filter(trip => trip.status === 'pending');
+        // pendingTripsSection.innerHTML = '';
+        let filteredTripsList = traveler.filterTrips(tripData);
+        let pendingTripsList = filteredTripsList.filter(trip => trip.status === 'pending');
         pendingTripsList.forEach(trip => {
             pendingTripsSection.insertAdjacentHTML('afterbegin', `
             <p class="display-date pending-date">Date:${trip.date}</p>
@@ -42,25 +50,33 @@ let domUpdates = {
         })
     },
 
-    displayPastTrips(traveler, dateToday) {
-        let pastTripsSection = document.querySelector('.card-past-trip');
-        pastTripsSection.innerHTML = '';
-        let pastTrips = traveler.filterTrips(tripData).filter(trip => trip.date <= dateToday) 
-        pastTrips.forEach(trip => {
-            pastTripsSection.insertAdjacentHTML('afterbegin', `
-            <p class="display-date">Date: ${trip.date}</p>
-            <p class="display-destination">Destination:</p>
-            <p class="display-duration">Duration: ${trip.duration}</p>
-            <p class="display-number-travelers"># of Travelers: ${trip.travelers}</p>
-            `)
-        })
+    showPastTrips(trips) {
+        console.log('hi')
+        // let pastTripsSection = document.querySelector('.card-past-trip');
+        // pastTripsSection.innerHTML = '';
+        // let filteredTrips = traveler.filterTrips(trips)
+        // let pastTrips = filteredTrips.filter(trip => trip.date <= today) 
+        // pastTrips.forEach(trip => {
+        //     pastTripsSection.insertAdjacentHTML('afterbegin', `
+        //     <p class="display-date">Date: ${trip.date}</p>
+        //     <p class="display-destination">Destination:</p>
+        //     <p class="display-duration">Duration: ${trip.duration}</p>
+        //     <p class="display-number-travelers"># of Travelers: ${trip.travelers}</p>
+        //     `)
+        // })
     },
 
-    displayTotalAnnualAmt(traveler, tripData, year, destinations) {
+    displayTotalAnnualAmt(tripData, destinations) {
+        let year = '2020';
+        console.log(traveler)
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
         totalSpentDisplay.innerHTML += `${totalAmtSpent}`;
     }, 
+
+    displayDateToday() {
+
+    },
 
     submitRequest() {
         //check that all input fields are full 
