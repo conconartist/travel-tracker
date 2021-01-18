@@ -54,10 +54,10 @@ const getData = () => {
           trips = dataset[1].trips;
           destinations = dataset[2].destinations;
           domUpdates.displayTotalAnnualAmt(traveler, trips, year, destinations);
-          domUpdates.showPendingTrips(traveler, trips);
-          domUpdates.showUpcomingTrips(traveler, trips, today);
-          domUpdates.showPastTrips(traveler, trips, today);
-          domUpdates.showPresentTrip(traveler, trips, today);
+          domUpdates.showPendingTrips(traveler, trips, destinations);
+          domUpdates.showUpcomingTrips(traveler, trips, today, destinations);
+          domUpdates.showPastTrips(traveler, trips, today, destinations);
+          domUpdates.showPresentTrip(traveler, trips, today, destinations);
       })
       .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
