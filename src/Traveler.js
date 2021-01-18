@@ -9,29 +9,45 @@ class Traveler {
     this.pendingTrips = [];
     this.upcomingTrips = [];
     this.pastTrips = [];
+    this.presentTrips = [];
 }
   filterAllTrips(tripData) {
     this.trips = tripData.filter(trip => trip.userID === this.id);
     return this.trips;
-    //separate into all/ pending/ present/ future?
   }
+
   filterPendingTrips(tripData) {
     this.filterAllTrips(tripData);
     this.pendingTrips = this.trips.filter(trip => trip.status ==='pending');
     return this.pendingTrips;
   }  
+
   filterUpcomingTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.upcomingTrips = this.trips.filter(trip => Date.parse(trip.date) > Date.parse(dateToday));
+    this.upcomingTrips = this.trips.filter(trip => parseInt(trip.date.replaceAll('/', "")) > parseInt(dateToday.replaceAll('/', "")));
     return this.upcomingTrips;
   }
+
   filterPastTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.pastTrips = this.trips.filter(trip => Date.parse(trip.date) < Date.parse(dateToday));
+    this.pastTrips = this.trips.filter(trip => parseInt(trip.date.replaceAll('/', "")) < parseInt(dateToday.replaceAll('/', "")));
     return this.pastTrips;
   }
 
-  //filter Today's trip?
+  filterPresentTrips(tripData, dateToday) {
+    this.filterAllTrips(tripData);
+    
+    let presentTrips = [];
+    this.trips.forEach(trip => {
+      const tripStartDates = parseInt(trip.date.replaceAll('/', ""));
+      const tripEndDates = tripStartDates + trip.duration;
+      let todaysDate = parseInt(dateToday.replaceAll('/', ""))
+      if(tripStartDates < todaysDate && tripEndDates > todaysDate){
+        presentTrips.push(trip)
+      }
+    })
+    return presentTrips;
+  }
 
   determineTotalAmtSpent(tripData, year, destinations) {
       let userTrips = this.filterAllTrips(tripData);

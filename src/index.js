@@ -30,7 +30,7 @@ let traveler, trips, destinations;
 
 //DASHBOARD
 // let today = new Date().toISOString().slice(0, 10);
-let today = "2020/03/08";
+let today = "2020/07/25";
 let year = '2020';
 const instantiateUser = (travelers, userLogin) => {
     let travelerId = Number(userLogin.slice(8))
@@ -53,12 +53,11 @@ const getData = () => {
           //refactor for login input
           trips = dataset[1].trips;
           destinations = dataset[2].destinations;
+          domUpdates.displayTotalAnnualAmt(traveler, trips, year, destinations);
           domUpdates.showPendingTrips(traveler, trips);
           domUpdates.showUpcomingTrips(traveler, trips, today);
           domUpdates.showPastTrips(traveler, trips, today);
-        //   domUpdates.displayBookTrip();
-          domUpdates.displayTotalAnnualAmt(traveler, trips, year, destinations);
-          console.log(traveler)
+          domUpdates.showPresentTrip(traveler, trips, today);
       })
       .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
