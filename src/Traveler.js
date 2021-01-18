@@ -34,7 +34,7 @@ class Traveler {
   //filter Today's trip?
 
   determineTotalAmtSpent(tripData, year, destinations) {
-      let userTrips = this.filterTrips(tripData);
+      let userTrips = this.filterAllTrips(tripData);
       let tripsInYear = userTrips.filter(trip => trip.date.includes(year) && trip.status === 'approved');
       let getCostStats = tripsInYear.map(trip => {
         let totalTripCost = {};
@@ -42,7 +42,7 @@ class Traveler {
             if(trip.destinationID === destination.id) {
               totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
               totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-              totalTripCost.agentFee = (tripCost.totalLodging + tripCost.totalFlightCost) * 0.1;
+              totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
             }
         })
         return totalTripCost;
