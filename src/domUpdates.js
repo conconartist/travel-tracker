@@ -61,10 +61,22 @@ let domUpdates = {
         })
     },
 
+    showPresentTrip(traveler, tripData, dateToday) {
+        let presentTripsSection = document.querySelector('.card-present-trip');
+        let presentTrips = traveler.filterPresentTrips(tripData, dateToday);
+        presentTrips.forEach(trip => {
+            presentTripsSection.insertAdjacentHTML('afterbegin', `
+            <p class="display-date">Date: ${trip.date}</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration: ${trip.duration}</p>
+            <p class="display-number-travelers"># of Travelers: ${trip.travelers}</p>
+            `)
+        })
+    },
     displayTotalAnnualAmt(traveler, tripData, year, destinations) {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
-        totalSpentDisplay.innerHTML += `${totalAmtSpent}`;
+        totalSpentDisplay.innerHTML += `$${totalAmtSpent} (agent fee included)`;
     }, 
 
     displayDateToday() {
