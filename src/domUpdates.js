@@ -46,7 +46,6 @@ let domUpdates = {
         let pastTripsSection = document.querySelector('.card-past-trip');
         pastTripsSection.innerHTML = '';
         let pastTrips = traveler.filterTrips(tripData).filter(trip => trip.date <= dateToday) 
-        )
         pastTrips.forEach(trip => {
             pastTripsSection.insertAdjacentHTML('afterbegin', `
             <p class="display-date">Date: ${trip.date}</p>
@@ -61,8 +60,20 @@ let domUpdates = {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
         totalSpentDisplay.innerHTML += `${totalAmtSpent}`;
+    }, 
+
+    submitRequest() {
+        //check that all input fields are full 
+        //if they are, then submit and create a new trip to enter into data with pending status
+    }, 
+
+    showCostEstimate(trip, destinations) {
+        //check if all input fields are full
+        //if they are, calculate the cost of the trip 
+        traveler.getTripCostEstimate(trip, destinations)
     }
 
 
 
 }
+export default domUpdates;

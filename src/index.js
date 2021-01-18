@@ -10,6 +10,8 @@ import Destination from './Destination.js';
 // import './images/turing-logo.png'
 
 const homeButton = document.querySelector('#button-home');
+const calculateCostButton = document.querySelector('.button-cost-estimate');
+const submitRequestButton = document.querySelector('.button-submit-request');
 const upcomingTripsHeader = document.querySelector('.heading-upcoming-trips');
 const pendingTripsHeader = document.querySelector('.heading-pending-trips');
 const bookTripHeader = document.querySelector('.heading-book-trip');
@@ -53,6 +55,8 @@ const goHome = () => {
 //login page -> openDashboard();
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
+calculateCostButton.addEventListener('click', domUpdates.showCostEstimate)
+submitRequestButton.addEventListener('click', domUpdates.submitRequest)
 upcomingTripsHeader.addEventListener('click', domUpdates.showTripSection);
 pendingTripsHeader.addEventListener('click', domUpdates.showTripSection);
 bookTripHeader.addEventListener('click', domUpdates.showTripSection);
