@@ -21,10 +21,10 @@ let domUpdates = {
         //remove hidden class 
     },
     
-    showUpcomingTrips(dateToday) {
+    showUpcomingTrips(traveler, tripData, dateToday) {
         let upcomingTripsSection = document.querySelector('.card-upcoming-trips');
         upcomingTripsSection = '';
-        let upcomingTripsList = traveler.filterTrips(tripData).filter(trip => trip.date >= dateToday);
+        let upcomingTripsList = traveler.filterUpcomingTrips(tripData, dateToday);
         upcomingTripsList.forEach(trip => {
             upcomingTripsSection.insertAdjacentHTML('afterbegin', `
             <p class="display-date upcoming-date">Date: ${trip.date}</p>
@@ -35,11 +35,11 @@ let domUpdates = {
         })
     },
 
-    showPendingTrips(tripData) {
+    showPendingTrips(traveler, tripData) {
+        console.log("showmepending")
         let pendingTripsSection = document.querySelector('.card-pending-trips');
         // pendingTripsSection.innerHTML = '';
-        let filteredTripsList = traveler.filterTrips(tripData);
-        let pendingTripsList = filteredTripsList.filter(trip => trip.status === 'pending');
+        let pendingTripsList = traveler.filterPendingTrips(tripData);
         pendingTripsList.forEach(trip => {
             pendingTripsSection.insertAdjacentHTML('afterbegin', `
             <p class="display-date pending-date">Date:${trip.date}</p>
@@ -52,18 +52,18 @@ let domUpdates = {
 
     showPastTrips(trips) {
         console.log('hi')
-        // let pastTripsSection = document.querySelector('.card-past-trip');
-        // pastTripsSection.innerHTML = '';
-        // let filteredTrips = traveler.filterTrips(trips)
-        // let pastTrips = filteredTrips.filter(trip => trip.date <= today) 
-        // pastTrips.forEach(trip => {
-        //     pastTripsSection.insertAdjacentHTML('afterbegin', `
-        //     <p class="display-date">Date: ${trip.date}</p>
-        //     <p class="display-destination">Destination:</p>
-        //     <p class="display-duration">Duration: ${trip.duration}</p>
-        //     <p class="display-number-travelers"># of Travelers: ${trip.travelers}</p>
-        //     `)
-        // })
+        let pastTripsSection = document.querySelector('.card-past-trip');
+        pastTripsSection.innerHTML = '';
+        let filteredTrips = traveler.filterTrips(trips)
+        let pastTrips = filteredTrips.filter(trip => trip.date <= today) 
+        pastTrips.forEach(trip => {
+            pastTripsSection.insertAdjacentHTML('afterbegin', `
+            <p class="display-date">Date: ${trip.date}</p>
+            <p class="display-destination">Destination:</p>
+            <p class="display-duration">Duration: ${trip.duration}</p>
+            <p class="display-number-travelers"># of Travelers: ${trip.travelers}</p>
+            `)
+        })
     },
 
     displayTotalAnnualAmt(tripData, destinations) {
