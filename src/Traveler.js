@@ -1,15 +1,33 @@
 class Traveler {
   constructor(travelerData) {
-      this.id = travelerData.id;
-      this.name = travelerData.name;
-      this.travelerType = travelerData.travelerType;
-      this.password = "travel2020";
-      this.trips = [];
+    this.id = travelerData.id;
+    this.name = travelerData.name;
+    this.travelerType = travelerData.travelerType;
+    this.username = "traveler" + this.id;
+    this.password = "travel2020";
+    this.trips = [];
+    this.pendingTrips = [];
+    this.upcomingTrips = [];
+    this.pastTrips = [];
+}
+  filterAllTrips(tripData) {
+    this.trips = tripData.filter(trip => trip.userID === this.id);
+    return this.trips;
+    //separate into all/ pending/ present/ future?
   }
-  filterTrips(tripData) {
-      this.trips = tripData.filter(trip => trip.userID === this.id);
-      return this.trips;
-      //separate into all/ pending/ present/ future?
+  filterPendingTrips(tripData) {
+    this.filterAllTrips(tripData);
+    this.pendingTrips = this.trips.filter(trip => trip.status ==='pending');
+    return this.pendingTrips;
+  }  
+  filterUpcomingTrips(tripData, dateToday) {
+    this.filterAllTrips(tripData);
+    this.upcomingTrips = this.trips.filter(trip => trip.date >= dateToday);
+    return this.upcomingTrips;
+  }
+  filterPastTrips(tripData, dateToday) {
+    this.filterAllTrips(tripData);
+    this.pastTrips = this.trips.filter(trip => trip.date <= dateToday)
   }
   determineTotalAmtSpent(tripData, year, destinations) {
       let userTrips = this.filterTrips(tripData);
