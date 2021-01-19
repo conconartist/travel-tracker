@@ -16,20 +16,23 @@ body {
 }
 
 h1 {
+  color: $dark-text-color;
+  font-size: 8vh;
   margin: 5vh;
 }
 
 h2 {
+  color: $lightest-accent;
   margin: 3vh;
 }
 
 h3 {
-  background-color: gray;
+  background-color: $lighter-background;
   margin: 0;
   padding: 3%;
   @include justify-center-flex();
   &:hover {
-    background-color: cornflowerblue;
+    background-color: $lightest-accent;
   }
 }
 
@@ -40,18 +43,26 @@ main {
 }
 
 nav {
-  background-color: antiquewhite;
+  align-items: center;
+  background-color: $secondary-muted-accent;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+  @include align-center-flex;
+}
+
+p {
+  font-weight:300;
+}
+.card-trip {
+  padding: 2%;
+  @include align-center-flex;
 }
 
 .destination-photo {
-  height: 15vh;
+  width: 50vh;
 }
 
 .dashboard-wrapper {
@@ -59,13 +70,26 @@ form {
   grid-gap: 1% 3%;
   grid-template-columns: repeat(1, 1fr);
   margin: 4%;
-  background-color: gold;
+  background-color: $primary-background;
   width: 60%;
+}
+
+.pending-trips {
+  @include justify-center-flex;
+  flex-direction: column;
+}
+
+.total-amount-spent {
+  @include justify-center-flex;
+  background-color: $muted-accent;
+  padding: 2%;
 }
 
 .trip-list-wrapper {
   @extend main;
-  background-color: chartreuse;
+  background-color: $secondary-muted-accent;
+  color: $darker-primary-color;
+  padding-top: 5%;
 }
 //---------login display------//
 
@@ -90,7 +114,7 @@ form {
 }
 
 .login-display {
-  background-color: deeppink;
+  background-color: $muted-accent;
   @include align-center-flex();
   justify-content: space-around;
   width: 50%;
@@ -98,13 +122,44 @@ form {
   padding: 5%;
 }
 
-//---------buttons-----------//
+//---------buttons and input fields-----------//
+
+.button-cost-estimate {
+  @include button-style;
+}
+
+.button-submit-request {
+  @include button-style;
+}
 
 .button-nav {
   @include justify-center-flex();
   align-items: center;
+  border-radius: 5px;
   margin: 2vh;
   width: 10%;
+  height: 10vh;
+}
+
+.date-input {
+  height: 5vh;
+  margin: 2vh;
+}
+
+.destination-menu {
+  height: 6vh;
+  margin: 2vh;
+}
+
+.duration-input {
+  height: 6vh;
+  width: 20vh;
+  margin-bottom: 6%;
+}
+
+.travelers-input {
+  height: 6vh;
+  width: 22vh;
 }
 
 //---------hidden-----------//
