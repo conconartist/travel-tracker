@@ -94,7 +94,9 @@ const getTripCostEstimate = () => {
 }
 
 const submitBookingRequest = () => {
-    domUpdates.submitRequest();
+    let tripDetails = getTripDetails();
+    domUpdates.submitRequest(tripDetails);
+    //add to pending trips 
 }
 
 const displayPendingTrips = (traveler, trips) => {

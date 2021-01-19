@@ -1,3 +1,5 @@
+import Trip from "./Trip";
+
 let domUpdates = {
 
     showTripSection(tripSection) {
@@ -108,9 +110,17 @@ let domUpdates = {
 
     },
 
-    submitRequest() {
+    submitRequest(tripDetails) {
         //check that all input fields are full 
+        event.preventDefault()
+        console.log(tripDetails)
+        tripDetails.status = 'pending';
+        console.log(tripDetails)
+        tripDetails = new Trip(tripDetails);
+        document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
+        <p class="trip-status-announcement">Your trip is now pending.</p>`)
         //if they are, then submit and create a new trip to enter into data with pending status
+        //animation to create a pending screen while fetch request is made?
     }, 
 
     showCostEstimate(tripEstimate) {
