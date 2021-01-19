@@ -10,8 +10,25 @@
 }
 
 @mixin button-style() {
-    border-radius: 5px;
+    border-radius: 6px;
+    border: none;
     height: 7vh;
     margin: 2vh;
     width: 43%;
+}
+
+@mixin button-hover() {
+    background-color: $dark-hover-background;
+    color: $dark-hover-text;
+}
+
+@mixin input-style() {
+    border-radius: 6px;
+    border: none;
+    height: 6vh;
+}
+
+@mixin heading-hover() {
+    background-color: $dark-text-color;
+    color: $dark-hover-text;
 }
