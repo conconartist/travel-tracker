@@ -1,10 +1,13 @@
 import Trip from "./Trip";
 
 let domUpdates = {
-
+    toggle(category) {
+        category.classList.toggle("hidden");
+    },
     showTripSection(tripSection) {
+        toggle(tripSection);
         let tripLists = document.querySelectorAll('trip-list-wrapper');
-        tripLists.classList.add('hidden');
+        // tripLists.classList.add('hidden');
         //if event.target.classlist.contains ${tripSection}, remove hidden
         //reveal section display
         //hide other section displays
@@ -17,9 +20,6 @@ let domUpdates = {
     }, 
 
     displayBookTrip(destinations) {
-        // let bookTripSection = document.querySelector('.card-book-trip');
-        //remove hidden class 
-
         const destinationMenu = document.querySelector(".destination-menu");
         destinations.forEach(destination => {
             const listElement = document.createElement("option");
@@ -101,7 +101,7 @@ let domUpdates = {
                 <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
                 <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
                 <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
-                <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+                <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
                 `)
                 }
             })
@@ -117,26 +117,16 @@ let domUpdates = {
 
     },
 
-    clearForm() {
-        document.querySelector("#book-date").value = "";
-        document.querySelector(".destination-menu").value = "";
-        document.querySelector("#book-duration").value = "";
-        document.querySelector("#book-travelers").value = "";
-        //hide form?
-    },
     revealSubmissionButton() {
         document.querySelector(".button-submit-request").classList.remove("hidden");
     },
 
     submitRequest() {
-        //check that all input fields are full 
         event.preventDefault()
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="trip-status-announcement">Your trip is now pending.</p>`)
         document.querySelector(".button-submit-request").classList.add("hidden");
         this.clearForm();
-        //if they are, then submit and create a new trip to enter into data with pending status
-        //animation to create a pending screen while fetch request is made?
     }, 
 
     showCostEstimate(tripEstimate) {

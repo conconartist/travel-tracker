@@ -6,7 +6,7 @@
   <body>
     <nav>
       <h1>TRAVEL TRACKER</h1>
-      <button id="button-home" class="button-nav" aria-label="home-button">Home</button>
+      <button id="button-home" class="button-nav" aria-label="home-button">Log Out</button>
     </nav>
     <main>
       <header>
@@ -46,7 +46,7 @@
         </section>
         <section class="book-trip">
           <h3 class="heading-book-trip" aria-label="view-book-trip-form">BOOK A TRIP</h4>
-          <div class="trip-list-wrapper card-book-trip">
+          <div class="card-book-trip">
             <form aria-label="book-trip-form">
               <label for="book-date">Date:</label>
               <input class="date-input" type="date" id="book-date" name="date">
@@ -54,9 +54,9 @@
                 <option>Destination</option>
               </select>
               <label for="book-duration">Duration:</label>
-              <input class="duration-input" type="number" id="book-duration" name="duration" min="1" placeholder="How long is your trip?">
+              <input class="duration-input" type="number" id="book-duration" name="duration" min="1" placeholder="How many days?">
               <label for="book-travelers">Number of Travelers:</label>
-              <input class="travelers-input" type="number" id="book-travelers" name="travelers" min="1" max="20" placeholder="How many are traveling?">
+              <input class="travelers-input" type="number" id="book-travelers" name="travelers" min="1" max="20" placeholder="Enter #">
               <button class="button-cost-estimate" aria-label="cost-estimate-button">Calculate Cost</button>
               <button class="button-submit-request hidden" aria-label="submit-request-button">Submit Your Request</button>
             </form>
