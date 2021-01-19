@@ -84,7 +84,7 @@ const addTrip = (tripDetails) => {
     })
     .then(response => response.json())
     .then(json => console.log(json))
-    .catch(err => console.log("Yikes"))
+    .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through."))
 }
 
 const goHome = () => {
