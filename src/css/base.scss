@@ -19,6 +19,7 @@ h1 {
   color: $dark-text-color;
   font-size: 8vh;
   margin: 5vh;
+  text-shadow: 1px 1px 0px black;
 }
 
 h2 {
@@ -28,11 +29,15 @@ h2 {
 
 h3 {
   background-color: $lighter-background;
+  cursor: pointer;
   margin: 0;
   padding: 3%;
   @include justify-center-flex();
   &:hover {
     @include heading-hover;
+  }
+  &:active {
+    background-color: black;
   }
 }
 
@@ -47,6 +52,7 @@ nav {
   background-color: $secondary-muted-accent;
   display: flex;
   justify-content: space-between;
+  height: 35vh;
 }
 
 form {
@@ -182,4 +188,44 @@ p {
   padding: 0;
   position: absolute;
   width: 1px;
+}
+
+//-------media queries------//
+
+@media (max-width: 800px) {
+  .all-cards {
+    grid-gap: 0.5% 4%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .main-header {
+    height: 18vh;
+  }
+
+  .search-input {
+    width: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .all-cards {
+    grid-gap: 0.5% 5%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .main-header {
+    height: 18vh;
+  }
+
+  .search-input {
+    width: 80%;
+  }
 }
