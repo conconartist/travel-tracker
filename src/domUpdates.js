@@ -1,14 +1,28 @@
 import Trip from "./Trip";
 
 let domUpdates = {
+
     hideDashboard() {
         document.querySelector(".dashboard-wrapper").classList.add("hidden");
         document.querySelector(".button-nav").classList.add("hidden");
     },
+
+    revealDashboard() {
+        document.querySelector(".login-display").classList.add("hidden");
+        document.querySelector(".dashboard-wrapper").classList.remove("hidden");
+        document.querySelector(".button-nav").classList.remove("hidden");
+    },
+
     displayMessage(message) {
         const displayMessage = document.querySelector('.error-message');
         displayMessage.innerHTML = `<p class="message">${message}</p>`
     }, 
+
+    greetUser(traveler) {
+        const name = traveler.name.split(' ')[0]
+        const userGreeting = document.querySelector(".greeting");
+        userGreeting.innerText = `Welcome, ${name}`
+    },
 
     displayBookTrip(destinations) {
         const destinationMenu = document.querySelector(".destination-menu");
@@ -98,24 +112,29 @@ let domUpdates = {
             })
         })
     },
+
     displayTotalAnnualAmt(traveler, tripData, year, destinations) {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
         totalSpentDisplay.innerHTML += `<p class="amount-spent-amount">$${totalAmtSpent}</p>`;
     }, 
 
-    displayDateToday() {
-
-    },
-
     revealSubmissionButton() {
         document.querySelector(".button-submit-request").classList.remove("hidden");
     },
 
+    clearForm() {
+        document.querySelector(".date-input").value = "";
+        document.querySelector(".destination-menu").value = "";
+        document.querySelector(".duration-input").value = "";
+        document.querySelector(".travelers-input").value = "";
+        document.querySelector(".button-submit-request").classList.add("hidden");
+    }, 
+
     submitRequest() {
         event.preventDefault()
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
-        <p class="trip-status-announcement">Your trip is now pending.</p>`)
+        <p class="trip-status-announcement">Your trip has been submitted and is now pending.</p>`)
         document.querySelector(".button-submit-request").classList.add("hidden");
         this.clearForm();
     }, 
