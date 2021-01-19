@@ -1,5 +1,3 @@
-import Traveler from './Traveler.js';
-
 let domUpdates = {
 
     showTripSection(tripSection) {
@@ -16,10 +14,16 @@ let domUpdates = {
         errorMessage.innerHTML = `<p class="message">${message}</p>`
     }, 
 
-    displayBookTrip() {
-        console.log('hi')
+    displayBookTrip(destinations) {
         // let bookTripSection = document.querySelector('.card-book-trip');
         //remove hidden class 
+        const destinationMenu = document.querySelector(".destination-menu");
+        destinations.forEach(destination => {
+            const listElement = document.createElement("option");
+            listElement.innerHTML = `${destination.destination}`;
+            listElement.value = `${destination.id}`;
+            destinationMenu.appendChild(listElement);
+        })
     },
     
     showUpcomingTrips(traveler, tripData, dateToday, destinations) {
@@ -109,13 +113,12 @@ let domUpdates = {
         //if they are, then submit and create a new trip to enter into data with pending status
     }, 
 
-    showCostEstimate(trip, destinations) {
-        //check if all input fields are full
-        //if they are, calculate the cost of the trip 
-        traveler.getTripCostEstimate(trip, destinations)
+    showCostEstimate(tripEstimate) {
+        event.preventDefault()
+        document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
+        <p class="cost-estimate-announcement">Trip Cost Estimate: $${tripEstimate}<p>
+        `)
     }
-
-
 
 }
 export default domUpdates;
