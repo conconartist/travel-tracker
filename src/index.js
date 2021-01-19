@@ -11,29 +11,17 @@ const logInButton = document.querySelector(".button-login");
 const logOutButton = document.querySelector('#button-log-out');
 const calculateCostButton = document.querySelector('.button-cost-estimate');
 const submitRequestButton = document.querySelector('.button-submit-request');
-const upcomingTripsHeader = document.querySelector('.heading-upcoming-trips');
-const pendingTripsHeader = document.querySelector('.heading-pending-trips');
-const bookTripHeader = document.querySelector('.heading-book-trip');
-const pastTripsHeader = document.querySelector('.heading-past-trip');
 
-let traveler, trips, destinations;
-
-//LOGIN FUNCTIONALITY
-//
-//On load, the login screen should appear, hiding the .dashboard-wrapper
-//When user inputs username and password
-//method must check conditional
-//get fetch single user by user id
-//if password matches, add hidden to login display class and remove hidden from dashboard-wrapper
+let traveler, travelerId, trips, destinations;
 
 //DASHBOARD
 // let today = new Date().toISOString().slice(0, 10);
 let today = "2020/07/25";
 let year = '2020';
+
 const instantiateUser = (travelers, userLogin) => {
-    let travelerId = Number(userLogin.slice(8))
-    let travelerInfo = travelers.find(traveler => {
-        return traveler.id === travelerId;
+    const travelerInfo = travelers.find(traveler => {
+        return traveler.id === userLogin;
     })
     traveler = new Traveler({id: travelerId, name: travelerInfo.name, travelerType: travelerInfo.travelerType});
 }
@@ -48,10 +36,10 @@ const getData = () => {
   
     Promise.all([userPromise, tripsPromise, destinationsPromise])
       .then(dataset => {
-          instantiateUser(dataset[0].travelers, 'traveler25')
-          //refactor for login input
+          instantiateUser(dataset[0].travelers, travelerId)
           trips = dataset[1].trips;
           destinations = dataset[2].destinations;
+          domUpdates.greetUser(traveler);
           domUpdates.displayTotalAnnualAmt(traveler, trips, year, destinations);
           domUpdates.showPendingTrips(traveler, trips, destinations);
           domUpdates.showUpcomingTrips(traveler, trips, today, destinations);
@@ -64,27 +52,24 @@ const getData = () => {
 
 const openDashboard = () => {
     getData();
-}
-
-const getUserData = () => {
-
+    domUpdates.revealDashboard();
 }
 
 const getTravelerId = () => {
-    let userLogin = document.querySelector("#input-username").value;
-    let userPassword = document.querySelector("#input-password").value;
+    const userLogin = document.querySelector("#input-username").value;
+    const userPassword = document.querySelector("#input-password").value;
     if(!userLogin.includes("traveler") || userPassword !== "travel2020") {
         domUpdates.displayMessage("Wrong username and/or password. Please try again.");
     } else {
-        let userId = Number(userLogin.slice(8));
-        console.log("cool beans")
-        getUserData(userId)
+        travelerId = Number(userLogin.slice(8));
+        return travelerId;
     }
 }
 
 const checkLoginInfo = () => {
     if(document.querySelector("#input-username").value && document.querySelector("#input-password").value) {
         getTravelerId();
+        openDashboard();
     } else {
         domUpdates.displayMessage("Wrong username and/or password. Please try again.");
     }
@@ -110,16 +95,15 @@ const addTrip = (tripDetails) => {
     })
     .then(response => response.json())
     .then(json => console.log(json))
-    .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through"))
+    .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through."))
 }
 
 const logOutUser = () => {
-    //add hidden to all display sections
-    //reveal headers
+    reload = location.reload();
 }
 
 const getTripDetails = () => {
-    let tripDetails = {};
+    const tripDetails = {};
     tripDetails.date = document.querySelector("#book-date").value;
     tripDetails.destinationID = +document.querySelector(".destination-menu").value;
     tripDetails.duration = document.querySelector("#book-duration").value;
@@ -129,8 +113,6 @@ const getTripDetails = () => {
 
 const checkInputFields = () => {
     event.preventDefault();
-    //if each input has the correct type of value, then 
-    console.log(document.querySelector("#book-travelers").value)
     if(document.querySelector("#book-date").value && document.querySelector(".destination-menu").value && document.querySelector("#book-duration").value > 0 && document.querySelector("#book-travelers").value > 0) {
         getTripCostEstimate();
         domUpdates.revealSubmissionButton();
@@ -139,44 +121,25 @@ const checkInputFields = () => {
 
 const getTripCostEstimate = () => {
     event.preventDefault();
-    let tripDetails = getTripDetails();
-    let findDestination = destinations.find(destination => destination.id == tripDetails.destinationID);
-    let lodgingEstimate = findDestination.estimatedLodgingCostPerDay * tripDetails.duration;
-    let flightEstimate = findDestination.estimatedFlightCostPerPerson * tripDetails.travelers;
-    let agentFee = (lodgingEstimate + flightEstimate) * 0.1;
-    let tripEstimate = lodgingEstimate + flightEstimate + agentFee;
+    const tripDetails = getTripDetails();
+    const findDestination = destinations.find(destination => destination.id == tripDetails.destinationID);
+    const lodgingEstimate = findDestination.estimatedLodgingCostPerDay * tripDetails.duration;
+    const flightEstimate = findDestination.estimatedFlightCostPerPerson * tripDetails.travelers;
+    const agentFee = (lodgingEstimate + flightEstimate) * 0.1;
+    const tripEstimate = lodgingEstimate + flightEstimate + agentFee;
     domUpdates.showCostEstimate(tripEstimate);
 }
 
 const submitBookingRequest = () => {
-    let tripDetails = getTripDetails();
+    const tripDetails = getTripDetails();
     domUpdates.submitRequest();
     addTrip(tripDetails);
     domUpdates.clearText();
     domUpdates.clearForm();
 }
 
-const displayPendingTrips = (traveler, trips) => {
-    domUpdates.showPendingTrips(traveler, trips)
-}
-
-const displayUpcomingTrips = (traveler, trips, today) => {
-    domUpdates.showUpcomingTrips(traveler, trips, today);
-}
-
-const displayBookTripForm = (destinations) => {
-    domUpdates.displayBookTrip(destinations);
-}
-
-const displayPastTrips = (trips, today) => {
-    domUpdates.showPastTrips(trips, today)
-}
-
-//window.onload = login page?
-//login page -> openDashboard();
-// window.onload = openDashboard();
 window.onload = loginUser();
-logInButton.addEventListener('click', checkLoginInfo)
-logOutButton.addEventListener('click', logOutUser);
-calculateCostButton.addEventListener('click', checkInputFields)
+logInButton.addEventListener('click', checkLoginInfo);
+logOutButton.addEventListener('click', logOutUser, true);
+calculateCostButton.addEventListener('click', checkInputFields);
 submitRequestButton.addEventListener('click', submitBookingRequest);
