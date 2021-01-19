@@ -64,7 +64,6 @@ const getData = () => {
       .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
 
-
 const openDashboard = () => {
     getData();
 }
@@ -74,13 +73,18 @@ const goHome = () => {
     //reveal headers
 }
 
-const getTripCostEstimate = () => {
-    event.preventDefault();
+const getTripDetails = () => {
     let tripDetails = {};
     tripDetails.date = document.querySelector("#book-date").value;
     tripDetails.destinationID = document.querySelector(".destination-menu").value;
     tripDetails.duration = document.querySelector("#book-duration").value;
     tripDetails.travelers = document.querySelector("#book-travelers").value;
+    return tripDetails;
+}
+
+const getTripCostEstimate = () => {
+    event.preventDefault();
+    let tripDetails = getTripDetails();
     let findDestination = destinations.find(destination => destination.id == tripDetails.destinationID);
     let lodgingEstimate = findDestination.estimatedLodgingCostPerDay * tripDetails.duration;
     let flightEstimate = findDestination.estimatedFlightCostPerPerson * tripDetails.travelers;
