@@ -84,7 +84,7 @@ const addTrip = (tripDetails) => {
     })
     .then(response => response.json())
     .then(json => console.log(json))
-    .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through."))
+    .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through"))
 }
 
 const goHome = () => {
@@ -151,7 +151,7 @@ const displayPastTrips = (trips, today) => {
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
 calculateCostButton.addEventListener('click', checkInputFields)
-submitRequestButton.addEventListener('click', submitBookingRequest)
+submitRequestButton.addEventListener('click', submitBookingRequest);
 upcomingTripsHeader.addEventListener('click', displayUpcomingTrips);
 pendingTripsHeader.addEventListener('click', displayPendingTrips);
 bookTripHeader.addEventListener('click', displayBookTripForm);
