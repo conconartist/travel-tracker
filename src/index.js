@@ -68,6 +68,26 @@ const openDashboard = () => {
     getData();
 }
 
+const addTrip = (tripDetails) => {
+    tripDetails.status = 'pending';
+    tripDetails.id = parseInt(trips.length) + 1;
+    tripDetails.date = tripDetails.date.replaceAll('-', "/");
+    tripDetails.userID = traveler.id;
+    tripDetails.suggestedActivities = [];
+    tripDetails = new Trip(tripDetails);
+    console.log(tripDetails)
+    fetch('http://localhost:3001/api/v1/trips', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(tripDetails)
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.log("Yikes"))
+}
+
 const goHome = () => {
     //add hidden to all display sections
     //reveal headers
@@ -76,7 +96,7 @@ const goHome = () => {
 const getTripDetails = () => {
     let tripDetails = {};
     tripDetails.date = document.querySelector("#book-date").value;
-    tripDetails.destinationID = document.querySelector(".destination-menu").value;
+    tripDetails.destinationID = +document.querySelector(".destination-menu").value;
     tripDetails.duration = document.querySelector("#book-duration").value;
     tripDetails.travelers = document.querySelector("#book-travelers").value;
     return tripDetails;
@@ -95,8 +115,10 @@ const getTripCostEstimate = () => {
 
 const submitBookingRequest = () => {
     let tripDetails = getTripDetails();
-    domUpdates.submitRequest(tripDetails);
+    domUpdates.submitRequest();
+    addTrip(tripDetails);
     //add to pending trips 
+    //fetch request 
 }
 
 const displayPendingTrips = (traveler, trips) => {
@@ -115,12 +137,6 @@ const displayPastTrips = (trips, today) => {
     domUpdates.showPastTrips(trips, today)
 }
 
-
-// showCostEstimate(event, traveler, tripDetails, destinations) {
-//     console.log(getTripCostEstimate(tripDetails, destinations))
-//     //check if all input fields are full
-//     //if they are, calculate the cost of the trip 
-// }
 //window.onload = login page?
 //login page -> openDashboard();
 window.onload = openDashboard();
