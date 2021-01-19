@@ -24,7 +24,7 @@ class Traveler {
 
   filterUpcomingTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.upcomingTrips = this.trips.filter(trip => parseInt(trip.date.replaceAll('/', "")) > parseInt(dateToday.replaceAll('/', "")));
+    this.upcomingTrips = this.trips.filter(trip => trip.status === 'approved' && parseInt(trip.status === trip.date.replaceAll('/', "")) > parseInt(dateToday.replaceAll('/', "")));
     return this.upcomingTrips;
   }
 
