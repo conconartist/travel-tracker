@@ -110,7 +110,7 @@ let domUpdates = {
     displayTotalAnnualAmt(traveler, tripData, year, destinations) {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
-        totalSpentDisplay.innerHTML += `$${totalAmtSpent} (agent fee included)`;
+        totalSpentDisplay.innerHTML += `<p class="amount-spent-amount">$${totalAmtSpent}</p>`;
     }, 
 
     displayDateToday() {
