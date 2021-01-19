@@ -7,10 +7,8 @@ import TripRepository from './TripRepository.js'
 import Trip from './Trip.js';
 import Destination from './Destination.js';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-
-const homeButton = document.querySelector('#button-home');
+const logInButton = document.querySelector(".button-login");
+const logOutButton = document.querySelector('#button-log-out');
 const calculateCostButton = document.querySelector('.button-cost-estimate');
 const submitRequestButton = document.querySelector('.button-submit-request');
 const upcomingTripsHeader = document.querySelector('.heading-upcoming-trips');
@@ -68,6 +66,14 @@ const openDashboard = () => {
     getData();
 }
 
+const checkLoginInfo = () => {
+
+}
+
+const loginUser = () => {
+    domUpdates.hideDashboard();
+}
+
 const addTrip = (tripDetails) => {
     tripDetails.status = 'pending';
     tripDetails.id = parseInt(trips.length) + 1;
@@ -87,7 +93,7 @@ const addTrip = (tripDetails) => {
     .catch(err => domUpdates.displayMessage("Sorry.  Your trip request didn't go through"))
 }
 
-const goHome = () => {
+const logOutUser = () => {
     //add hidden to all display sections
     //reveal headers
 }
@@ -148,11 +154,9 @@ const displayPastTrips = (trips, today) => {
 
 //window.onload = login page?
 //login page -> openDashboard();
-window.onload = openDashboard();
-homeButton.addEventListener('click', goHome);
+// window.onload = openDashboard();
+window.onload = loginUser();
+logInButton.addEventListener('click', checkLoginInfo)
+logOutButton.addEventListener('click', logOutUser);
 calculateCostButton.addEventListener('click', checkInputFields)
 submitRequestButton.addEventListener('click', submitBookingRequest);
-upcomingTripsHeader.addEventListener('click', displayUpcomingTrips);
-pendingTripsHeader.addEventListener('click', displayPendingTrips);
-bookTripHeader.addEventListener('click', displayBookTripForm);
-pastTripsHeader.addEventListener('click',displayPastTrips);
