@@ -1,1 +1,9 @@
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+$primary-background: #15435D;
+$darker-primary-color: darken($primary-background, 15%);
+$dark-text-color: mix(black, $primary-background);
+$lighter-background: #A89688;
+$muted-accent: #CFCFD7;
+$secondary-muted-accent: mix(antiquewhite, $muted-accent);
+$lightest-accent: antiquewhite;
+$dark-hover-background: #2a2521;
+$dark-hover-text: mix(antiquewhite, white);

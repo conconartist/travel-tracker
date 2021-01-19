@@ -16,20 +16,25 @@ body {
 }
 
 h1 {
+  color: $dark-text-color;
+  font-size: 8vh;
   margin: 5vh;
+  text-shadow: 1px 1px 0px black;
 }
 
 h2 {
+  color: $dark-hover-text;
   margin: 3vh;
 }
 
 h3 {
-  background-color: gray;
+  background-color: $dark-hover-background;
+  color: $dark-hover-text;
   margin: 0;
   padding: 3%;
   @include justify-center-flex();
-  &:hover {
-    background-color: cornflowerblue;
+  &:active {
+    background-color: black;
   }
 }
 
@@ -40,18 +45,47 @@ main {
 }
 
 nav {
-  background-color: antiquewhite;
+  align-items: center;
+  background-color: $secondary-muted-accent;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 35vh;
+  // width: 103%;
 }
 
 form {
+  @include align-center-flex;
+  padding: 1%;
+}
+
+p {
+  font-weight:300;
+}
+
+.amount-spent-amount {
+  font-weight: bold;
+}
+
+.card-book-trip {
+  background-color: $secondary-muted-accent;
   display: flex;
   flex-direction: column;
+
+}
+.card-trip {
+  padding: 2%;
+  @include align-center-flex;
+}
+
+.cost-estimate-announcement {
+  @include justify-center-flex;
+  font-size: large;
+  font-weight: 600;
+  padding: 2%;
 }
 
 .destination-photo {
-  height: 15vh;
+  width: 40vh;
 }
 
 .dashboard-wrapper {
@@ -59,13 +93,28 @@ form {
   grid-gap: 1% 3%;
   grid-template-columns: repeat(1, 1fr);
   margin: 4%;
-  background-color: gold;
-  width: 60%;
+  background-color: $primary-background;
+  // width: 100%;
+}
+
+.pending-trips {
+  @include justify-center-flex;
+  flex-direction: column;
+}
+
+.total-amount-spent {
+  @include justify-center-flex;
+  background-color: $muted-accent;
+  border-radius: 6px;
+  padding: 2%;
 }
 
 .trip-list-wrapper {
-  @extend main;
-  background-color: chartreuse;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: $secondary-muted-accent;
+  color: $darker-primary-color;
+  padding: 3%;
 }
 //---------login display------//
 
@@ -80,31 +129,72 @@ form {
 
 .button-login {
   @extend .container-username;
+  @include button-style;
   padding: 2%;
-  width: 43%;
+  width: 60%;
+  &:hover {
+    @include button-hover;
+  }
 }
 
 .input-login {
+  @include input-style;
+  background-color: $dark-hover-text;
   padding: 2%;
   width: 60%;
 }
 
 .login-display {
-  background-color: deeppink;
+  background-color: $muted-accent;
   @include align-center-flex();
   justify-content: space-around;
-  width: 50%;
-  height: 15vh;
+  width: 55%;
+  height: 25vh;
   padding: 5%;
+  border-radius: 6px;
 }
 
-//---------buttons-----------//
+//---------buttons and input fields-----------//
+
+.button-cost-estimate, .button-submit-request {
+  @include button-style;
+  &:hover {
+    @include button-hover;
+  }
+}
 
 .button-nav {
   @include justify-center-flex();
   align-items: center;
+  border-radius: 6px;
+  border-width: 0;
   margin: 2vh;
   width: 10%;
+  height: 10vh;
+  &:hover {
+    @include button-hover;
+  }
+}
+
+.date-input {
+  @include input-style;
+  background-color: $muted-accent;
+  margin: 2vh;
+}
+
+.destination-menu {
+  @extend .date-input;
+}
+
+.duration-input {
+  @extend .date-input;
+  width: 20vh;
+  margin-bottom: 3%;
+}
+
+.travelers-input {
+  @extend .date-input;
+  width: 8vh;
 }
 
 //---------hidden-----------//
@@ -118,3 +208,52 @@ form {
   position: absolute;
   width: 1px;
 }
+
+//-------media queries------//
+
+@media (max-width: 800px) {
+  .trip-list-wrapper {
+    grid-gap: 0.5% 4%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  nav {
+    flex-direction: column;
+    height: 40vh;
+  }
+
+  .destination-photo {
+    width: 50vh;
+  }
+  
+  .login-display {
+    width: 82%;
+  }
+
+  .main-header {
+    height: 18vh;
+  }
+
+  .search-input {
+    width: 50%;
+  }
+}
+
+// @media (max-width: 640px) {
+//   .all-cards {
+//     grid-gap: 0.5% 5%;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+
+//   .button-container {
+//     flex-direction: column;
+//   }
+
+//   .main-header {
+//     height: 18vh;
+//   }
+
+//   .search-input {
+//     width: 80%;
+//   }
+// }

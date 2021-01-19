@@ -1,10 +1,13 @@
 import Trip from "./Trip";
 
 let domUpdates = {
-
+    toggle(category) {
+        category.classList.toggle("hidden");
+    },
     showTripSection(tripSection) {
+        toggle(tripSection);
         let tripLists = document.querySelectorAll('trip-list-wrapper');
-        tripLists.classList.add('hidden');
+        // tripLists.classList.add('hidden');
         //if event.target.classlist.contains ${tripSection}, remove hidden
         //reveal section display
         //hide other section displays
@@ -17,9 +20,6 @@ let domUpdates = {
     }, 
 
     displayBookTrip(destinations) {
-        // let bookTripSection = document.querySelector('.card-book-trip');
-        //remove hidden class 
-
         const destinationMenu = document.querySelector(".destination-menu");
         destinations.forEach(destination => {
             const listElement = document.createElement("option");
@@ -36,11 +36,13 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                   upcomingTripsSection.insertAdjacentHTML('afterbegin', `
-                    <p class="display-date upcoming-date">Date: ${trip.date}</p>
-                    <p class="display-destination upcoming-destination">Destination: ${destination.destination}</p>
-                    <img src="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                    <p class="display-duration upcoming-duration">Duration: ${trip.duration}</p>
-                    <p class="display-number-travelers upcoming-travelers"># of Travelers: ${trip.travelers}</p>
+                    <div class="card-trip">
+                      <p class="display-date upcoming-date">Date: ${trip.date}</p>
+                      <p class="display-destination upcoming-destination">Destination: ${destination.destination}</p>
+                      <img src="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+                      <p class="display-duration upcoming-duration">Duration: ${trip.duration}</p>
+                      <p class="display-number-travelers upcoming-travelers"># of Travelers: ${trip.travelers}</p>
+                    </div>
                     `)
                 }
             })
@@ -54,11 +56,13 @@ let domUpdates = {
             destinations.forEach(destination => {
             if(destination.id === trip.destinationID) {
             pendingTripsSection.insertAdjacentHTML('afterbegin', `
-            <p class="display-date pending-date">Date:${trip.date}</p>
-            <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
-            <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-            <p class="display-duration pending-duration">Duration:${trip.duration}</p>
-            <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+            <div class="card-trip">
+              <p class="display-date pending-date">Date: ${trip.date}</p>
+              <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
+              <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+              <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
+              <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
+            </div>
             `)
             }
           })
@@ -73,11 +77,13 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                 pastTripsSection.insertAdjacentHTML('afterbegin', `
-                <p class="display-date pending-date">Date:${trip.date}</p>
-                <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
-                <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                <p class="display-duration pending-duration">Duration:${trip.duration}</p>
-                <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+                <div class="card-trip">
+                  <p class="display-date pending-date">Date: ${trip.date}</p>
+                  <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
+                  <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+                  <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
+                  <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
+                </div>
                 `)
                 }
               })
@@ -91,11 +97,11 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                 presentTripsSection.insertAdjacentHTML('afterbegin', `
-                <p class="display-date pending-date">Date:${trip.date}</p>
+                <p class="display-date pending-date">Date: ${trip.date}</p>
                 <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
                 <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                <p class="display-duration pending-duration">Duration:${trip.duration}</p>
-                <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+                <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
+                <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
                 `)
                 }
             })
@@ -104,20 +110,23 @@ let domUpdates = {
     displayTotalAnnualAmt(traveler, tripData, year, destinations) {
         let totalAmtSpent = traveler.determineTotalAmtSpent(tripData, year, destinations);
         let totalSpentDisplay = document.querySelector('.total-amount-spent');
-        totalSpentDisplay.innerHTML += `$${totalAmtSpent} (agent fee included)`;
+        totalSpentDisplay.innerHTML += `<p class="amount-spent-amount">$${totalAmtSpent}</p>`;
     }, 
 
     displayDateToday() {
 
     },
 
+    revealSubmissionButton() {
+        document.querySelector(".button-submit-request").classList.remove("hidden");
+    },
+
     submitRequest() {
-        //check that all input fields are full 
         event.preventDefault()
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="trip-status-announcement">Your trip is now pending.</p>`)
-        //if they are, then submit and create a new trip to enter into data with pending status
-        //animation to create a pending screen while fetch request is made?
+        document.querySelector(".button-submit-request").classList.add("hidden");
+        this.clearForm();
     }, 
 
     showCostEstimate(tripEstimate) {
@@ -125,14 +134,6 @@ let domUpdates = {
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="cost-estimate-announcement">Trip Cost Estimate: $${tripEstimate}<p>
         `)
-    },
-
-    clearForm() {
-        document.querySelector("#book-date").value = "";
-        document.querySelector(".destination-menu").value = "";
-        document.querySelector("#book-duration").value = "";
-        document.querySelector("#book-travelers").value = "";
-        //hide form?
     },
 
     clearText() {
