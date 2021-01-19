@@ -101,6 +101,16 @@ const getTripDetails = () => {
     return tripDetails;
 }
 
+const checkInputFields = () => {
+    event.preventDefault();
+    //if each input has the correct type of value, then 
+    console.log(document.querySelector("#book-travelers").value)
+    if(document.querySelector("#book-date").value && document.querySelector(".destination-menu").value && document.querySelector("#book-duration").value > 0 && document.querySelector("#book-travelers").value > 0) {
+        getTripCostEstimate();
+        domUpdates.revealSubmissionButton();
+    }
+}
+
 const getTripCostEstimate = () => {
     event.preventDefault();
     let tripDetails = getTripDetails();
@@ -118,8 +128,6 @@ const submitBookingRequest = () => {
     addTrip(tripDetails);
     domUpdates.clearText();
     domUpdates.clearForm();
-    //add to pending trips 
-    //fetch request 
 }
 
 const displayPendingTrips = (traveler, trips) => {
@@ -142,7 +150,7 @@ const displayPastTrips = (trips, today) => {
 //login page -> openDashboard();
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
-calculateCostButton.addEventListener('click', getTripCostEstimate)
+calculateCostButton.addEventListener('click', checkInputFields)
 submitRequestButton.addEventListener('click', submitBookingRequest)
 upcomingTripsHeader.addEventListener('click', displayUpcomingTrips);
 pendingTripsHeader.addEventListener('click', displayPendingTrips);

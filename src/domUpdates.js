@@ -117,11 +117,24 @@ let domUpdates = {
 
     },
 
+    clearForm() {
+        document.querySelector("#book-date").value = "";
+        document.querySelector(".destination-menu").value = "";
+        document.querySelector("#book-duration").value = "";
+        document.querySelector("#book-travelers").value = "";
+        //hide form?
+    },
+    revealSubmissionButton() {
+        document.querySelector(".button-submit-request").classList.remove("hidden");
+    },
+
     submitRequest() {
         //check that all input fields are full 
         event.preventDefault()
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="trip-status-announcement">Your trip is now pending.</p>`)
+        document.querySelector(".button-submit-request").classList.add("hidden");
+        this.clearForm();
         //if they are, then submit and create a new trip to enter into data with pending status
         //animation to create a pending screen while fetch request is made?
     }, 
@@ -131,14 +144,6 @@ let domUpdates = {
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="cost-estimate-announcement">Trip Cost Estimate: $${tripEstimate}<p>
         `)
-    },
-
-    clearForm() {
-        document.querySelector("#book-date").value = "";
-        document.querySelector(".destination-menu").value = "";
-        document.querySelector("#book-duration").value = "";
-        document.querySelector("#book-travelers").value = "";
-        //hide form?
     },
 
     clearText() {
