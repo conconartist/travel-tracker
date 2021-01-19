@@ -39,6 +39,7 @@ const instantiateUser = (travelers, userLogin) => {
     })
     traveler = new Traveler({id: travelerId, name: travelerInfo.name, travelerType: travelerInfo.travelerType});
 }
+
 const getData = () => {
     let userPromise = fetch('http://localhost:3001/api/v1/travelers/')
       .then(res => res.json());
@@ -58,6 +59,7 @@ const getData = () => {
           domUpdates.showUpcomingTrips(traveler, trips, today, destinations);
           domUpdates.showPastTrips(traveler, trips, today, destinations);
           domUpdates.showPresentTrip(traveler, trips, today, destinations);
+          domUpdates.displayBookTrip(destinations);
       })
       .catch(error => domUpdates.displayMessage("Oops! Something went wrong. Please try again."))
 }
@@ -72,8 +74,19 @@ const goHome = () => {
     //reveal headers
 }
 
-const calculateCostEstimate = (trip, destinations) => {
-    domUpdates.showCostEstimate(trip, destinations);
+const getTripCostEstimate = () => {
+    event.preventDefault();
+    let tripDetails = {};
+    tripDetails.date = document.querySelector("#book-date").value;
+    tripDetails.destinationID = document.querySelector(".destination-menu").value;
+    tripDetails.duration = document.querySelector("#book-duration").value;
+    tripDetails.travelers = document.querySelector("#book-travelers").value;
+    let findDestination = destinations.find(destination => destination.id == tripDetails.destinationID);
+    let lodgingEstimate = findDestination.estimatedLodgingCostPerDay * tripDetails.duration;
+    let flightEstimate = findDestination.estimatedFlightCostPerPerson * tripDetails.travelers;
+    let agentFee = (lodgingEstimate + flightEstimate) * 0.1;
+    let tripEstimate = lodgingEstimate + flightEstimate + agentFee;
+    domUpdates.showCostEstimate(tripEstimate);
 }
 
 const submitBookingRequest = () => {
@@ -81,7 +94,6 @@ const submitBookingRequest = () => {
 }
 
 const displayPendingTrips = (traveler, trips) => {
-    console.log("displayPending")
     domUpdates.showPendingTrips(traveler, trips)
 }
 
@@ -89,18 +101,25 @@ const displayUpcomingTrips = (traveler, trips, today) => {
     domUpdates.showUpcomingTrips(traveler, trips, today);
 }
 
-const displayBookTripForm = () => {
-    domUpdates.displayBookTrip();
+const displayBookTripForm = (destinations) => {
+    domUpdates.displayBookTrip(destinations);
 }
 
-const displayPastTrips = () => {
+const displayPastTrips = (trips, today) => {
     domUpdates.showPastTrips(trips, today)
 }
+
+
+// showCostEstimate(event, traveler, tripDetails, destinations) {
+//     console.log(getTripCostEstimate(tripDetails, destinations))
+//     //check if all input fields are full
+//     //if they are, calculate the cost of the trip 
+// }
 //window.onload = login page?
 //login page -> openDashboard();
 window.onload = openDashboard();
 homeButton.addEventListener('click', goHome);
-calculateCostButton.addEventListener('click', calculateCostEstimate)
+calculateCostButton.addEventListener('click', getTripCostEstimate)
 submitRequestButton.addEventListener('click', submitBookingRequest)
 upcomingTripsHeader.addEventListener('click', displayUpcomingTrips);
 pendingTripsHeader.addEventListener('click', displayPendingTrips);
