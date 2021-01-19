@@ -47,10 +47,12 @@
           <div class="trip-list-wrapper card-book-trip">
             <form>
               <label for="book-date">Date:</label>
-              <input type="date" id="book-date" name="date" value="">
-              <p class="display-destination book-destination">Destination:</p>
+              <input type="date" id="book-date" name="date">
+              <select class="destination-menu">
+                <option>Destination</option>
+              </select>
               <label for="book-duration">Duration:</label>
-              <input type="number" id="book-duration" name="duration" min="1" value="">
+              <input type="number" id="book-duration" name="duration" min="1">
               <label for="book-travelers">Number of Travelers:</label>
               <input type="number" id="book-travelers" name="travelers" min="1" max="20">
               <button class="button-cost-estimate">Calculate Cost</button>
