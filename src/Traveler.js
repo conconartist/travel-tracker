@@ -36,7 +36,6 @@ class Traveler {
 
   filterPresentTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    
     let presentTrips = [];
     this.trips.forEach(trip => {
       const tripStartDates = parseInt(trip.date.replaceAll('/', ""));
@@ -50,27 +49,24 @@ class Traveler {
   }
 
   determineTotalAmtSpent(tripData, year, destinations) {
-      let userTrips = this.filterAllTrips(tripData);
-      let tripsInYear = userTrips.filter(trip => trip.date.includes(year) && trip.status === 'approved');
-      let getCostStats = tripsInYear.map(trip => {
-        let totalTripCost = {};
-        destinations.forEach(destination => {
-            if(trip.destinationID === destination.id) {
-              totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
-              totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-              totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
-            }
-        })
-        return totalTripCost;
-      });
-      let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
-        costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;
-        return costSum;
-      }, 0);
-      return totalCostPerGivenYear;
-  }
-  addTrip() {
-      //?
+    let userTrips = this.filterAllTrips(tripData);
+    let tripsInYear = userTrips.filter(trip => trip.date.includes(year) && trip.status === 'approved');
+    let getCostStats = tripsInYear.map(trip => {
+      let totalTripCost = {};
+      destinations.forEach(destination => {
+          if(trip.destinationID === destination.id) {
+            totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
+            totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+            totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
+          }
+      })
+      return totalTripCost;
+    });
+    let totalCostPerGivenYear = getCostStats.reduce((costSum, costStat) => {
+      costSum += costStat.totalLodging + costStat.totalFlightCost + costStat.agentFee;
+      return costSum;
+    }, 0);
+    return totalCostPerGivenYear;
   }
 }
 

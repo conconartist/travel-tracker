@@ -19,6 +19,7 @@ let domUpdates = {
     displayBookTrip(destinations) {
         // let bookTripSection = document.querySelector('.card-book-trip');
         //remove hidden class 
+
         const destinationMenu = document.querySelector(".destination-menu");
         destinations.forEach(destination => {
             const listElement = document.createElement("option");
@@ -124,6 +125,18 @@ let domUpdates = {
         document.querySelector(".card-book-trip").insertAdjacentHTML('beforeend', `
         <p class="cost-estimate-announcement">Trip Cost Estimate: $${tripEstimate}<p>
         `)
+    },
+
+    clearForm() {
+        document.querySelector("#book-date").value = "";
+        document.querySelector(".destination-menu").value = "";
+        document.querySelector("#book-duration").value = "";
+        document.querySelector("#book-travelers").value = "";
+        //hide form?
+    },
+
+    clearText() {
+        document.querySelector(".cost-estimate-announcement").innerHTML = "";
     }
 
 }

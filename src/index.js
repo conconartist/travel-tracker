@@ -75,7 +75,6 @@ const addTrip = (tripDetails) => {
     tripDetails.userID = traveler.id;
     tripDetails.suggestedActivities = [];
     tripDetails = new Trip(tripDetails);
-    console.log(tripDetails)
     fetch('http://localhost:3001/api/v1/trips', {
         method: 'POST',
         headers: {
@@ -117,6 +116,8 @@ const submitBookingRequest = () => {
     let tripDetails = getTripDetails();
     domUpdates.submitRequest();
     addTrip(tripDetails);
+    domUpdates.clearText();
+    domUpdates.clearForm();
     //add to pending trips 
     //fetch request 
 }
