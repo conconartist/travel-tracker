@@ -1,17 +1,8 @@
 import Trip from "./Trip";
 
 let domUpdates = {
-    toggle(category) {
-        category.classList.toggle("hidden");
-    },
-    showTripSection(tripSection) {
-        toggle(tripSection);
-        let tripLists = document.querySelectorAll('trip-list-wrapper');
-        // tripLists.classList.add('hidden');
-        //if event.target.classlist.contains ${tripSection}, remove hidden
-        //reveal section display
-        //hide other section displays
-        //toggle to expand and hide 
+    hideDashboard() {
+        document.querySelector(".dashboard-wrapper").classList.add("hidden")
     },
 
     displayMessage(message) {
