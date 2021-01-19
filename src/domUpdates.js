@@ -2,12 +2,12 @@ import Trip from "./Trip";
 
 let domUpdates = {
     hideDashboard() {
-        document.querySelector(".dashboard-wrapper").classList.add("hidden")
+        document.querySelector(".dashboard-wrapper").classList.add("hidden");
+        document.querySelector(".button-nav").classList.add("hidden");
     },
-
     displayMessage(message) {
-        const errorMessage = document.querySelector('.error-message');
-        errorMessage.innerHTML = `<p class="message">${message}</p>`
+        const displayMessage = document.querySelector('.error-message');
+        displayMessage.innerHTML = `<p class="message">${message}</p>`
     }, 
 
     displayBookTrip(destinations) {
