@@ -36,11 +36,13 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                   upcomingTripsSection.insertAdjacentHTML('afterbegin', `
-                    <p class="display-date upcoming-date">Date: ${trip.date}</p>
-                    <p class="display-destination upcoming-destination">Destination: ${destination.destination}</p>
-                    <img src="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                    <p class="display-duration upcoming-duration">Duration: ${trip.duration}</p>
-                    <p class="display-number-travelers upcoming-travelers"># of Travelers: ${trip.travelers}</p>
+                    <div class="card-trip">
+                      <p class="display-date upcoming-date">Date: ${trip.date}</p>
+                      <p class="display-destination upcoming-destination">Destination: ${destination.destination}</p>
+                      <img src="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+                      <p class="display-duration upcoming-duration">Duration: ${trip.duration}</p>
+                      <p class="display-number-travelers upcoming-travelers"># of Travelers: ${trip.travelers}</p>
+                    </div>
                     `)
                 }
             })
@@ -54,11 +56,13 @@ let domUpdates = {
             destinations.forEach(destination => {
             if(destination.id === trip.destinationID) {
             pendingTripsSection.insertAdjacentHTML('afterbegin', `
-            <p class="display-date pending-date">Date:${trip.date}</p>
-            <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
-            <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-            <p class="display-duration pending-duration">Duration:${trip.duration}</p>
-            <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+            <div class="card-trip">
+              <p class="display-date pending-date">Date: ${trip.date}</p>
+              <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
+              <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+              <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
+              <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
+            </div>
             `)
             }
           })
@@ -73,11 +77,13 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                 pastTripsSection.insertAdjacentHTML('afterbegin', `
-                <p class="display-date pending-date">Date:${trip.date}</p>
-                <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
-                <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                <p class="display-duration pending-duration">Duration:${trip.duration}</p>
-                <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
+                <div class="card-trip">
+                  <p class="display-date pending-date">Date: ${trip.date}</p>
+                  <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
+                  <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
+                  <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
+                  <p class="display-number-travelers pending-travelers"># of Travelers: ${trip.travelers}</p>
+                </div>
                 `)
                 }
               })
@@ -91,10 +97,10 @@ let domUpdates = {
             destinations.forEach(destination => {
                 if(destination.id === trip.destinationID) {
                 presentTripsSection.insertAdjacentHTML('afterbegin', `
-                <p class="display-date pending-date">Date:${trip.date}</p>
+                <p class="display-date pending-date">Date: ${trip.date}</p>
                 <p class="display-destination pending-destination">Destination: ${destination.destination}</p>
                 <img src ="${destination.image}" class="destination-photo" alt="photo of ${destination.destination}>
-                <p class="display-duration pending-duration">Duration:${trip.duration}</p>
+                <p class="display-duration pending-duration">Duration: ${trip.duration}</p>
                 <p class="display-number-travelers pending-travelers"># of Travelers:${trip.travelers}</p>
                 `)
                 }
