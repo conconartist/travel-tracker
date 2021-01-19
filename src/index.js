@@ -66,8 +66,28 @@ const openDashboard = () => {
     getData();
 }
 
-const checkLoginInfo = () => {
+const getUserData = () => {
 
+}
+
+const getTravelerId = () => {
+    let userLogin = document.querySelector("#input-username").value;
+    let userPassword = document.querySelector("#input-password").value;
+    if(!userLogin.includes("traveler") || userPassword !== "travel2020") {
+        domUpdates.displayMessage("Wrong username and/or password. Please try again.");
+    } else {
+        let userId = Number(userLogin.slice(8));
+        console.log("cool beans")
+        getUserData(userId)
+    }
+}
+
+const checkLoginInfo = () => {
+    if(document.querySelector("#input-username").value && document.querySelector("#input-password").value) {
+        getTravelerId();
+    } else {
+        domUpdates.displayMessage("Wrong username and/or password. Please try again.");
+    }
 }
 
 const loginUser = () => {
