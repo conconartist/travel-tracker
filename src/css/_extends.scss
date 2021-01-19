@@ -18,17 +18,14 @@
 }
 
 @mixin button-hover() {
-    background-color: $dark-hover-background;
+    background-color: $dark-text-color;
     color: $dark-hover-text;
 }
 
 @mixin input-style() {
     border-radius: 6px;
     border: none;
-    height: 6vh;
-}
-
-@mixin heading-hover() {
-    background-color: $dark-text-color;
-    color: $dark-hover-text;
+    height: 4vh;
+    padding: 1vh;
+    margin-top: 1%;
 }

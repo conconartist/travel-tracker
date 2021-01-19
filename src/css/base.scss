@@ -28,14 +28,11 @@ h2 {
 }
 
 h3 {
-  background-color: $lighter-background;
-  cursor: pointer;
+  background-color: $dark-hover-background;
+  color: $dark-hover-text;
   margin: 0;
   padding: 3%;
   @include justify-center-flex();
-  &:hover {
-    @include heading-hover;
-  }
   &:active {
     background-color: black;
   }
@@ -53,22 +50,42 @@ nav {
   display: flex;
   justify-content: space-between;
   height: 35vh;
+  // width: 103%;
 }
 
 form {
   @include align-center-flex;
+  padding: 1%;
 }
 
 p {
   font-weight:300;
+}
+
+.amount-spent-amount {
+  font-weight: bold;
+}
+
+.card-book-trip {
+  background-color: $secondary-muted-accent;
+  display: flex;
+  flex-direction: column;
+
 }
 .card-trip {
   padding: 2%;
   @include align-center-flex;
 }
 
+.cost-estimate-announcement {
+  @include justify-center-flex;
+  font-size: large;
+  font-weight: 600;
+  padding: 2%;
+}
+
 .destination-photo {
-  width: 50vh;
+  width: 40vh;
 }
 
 .dashboard-wrapper {
@@ -77,7 +94,7 @@ p {
   grid-template-columns: repeat(1, 1fr);
   margin: 4%;
   background-color: $primary-background;
-  width: 60%;
+  // width: 100%;
 }
 
 .pending-trips {
@@ -93,10 +110,11 @@ p {
 }
 
 .trip-list-wrapper {
-  @extend main;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   background-color: $secondary-muted-accent;
   color: $darker-primary-color;
-  padding-top: 5%;
+  padding: 3%;
 }
 //---------login display------//
 
@@ -113,7 +131,7 @@ p {
   @extend .container-username;
   @include button-style;
   padding: 2%;
-  width: 43%;
+  width: 60%;
   &:hover {
     @include button-hover;
   }
@@ -121,6 +139,7 @@ p {
 
 .input-login {
   @include input-style;
+  background-color: $dark-hover-text;
   padding: 2%;
   width: 60%;
 }
@@ -129,8 +148,8 @@ p {
   background-color: $muted-accent;
   @include align-center-flex();
   justify-content: space-around;
-  width: 50%;
-  height: 15vh;
+  width: 55%;
+  height: 25vh;
   padding: 5%;
   border-radius: 6px;
 }
@@ -159,23 +178,23 @@ p {
 
 .date-input {
   @include input-style;
+  background-color: $muted-accent;
   margin: 2vh;
 }
 
 .destination-menu {
-  @include input-style;
-  margin: 2vh;
+  @extend .date-input;
 }
 
 .duration-input {
-  @include input-style;
+  @extend .date-input;
   width: 20vh;
-  margin-bottom: 6%;
+  margin-bottom: 3%;
 }
 
 .travelers-input {
-  @include input-style;
-  width: 22vh;
+  @extend .date-input;
+  width: 8vh;
 }
 
 //---------hidden-----------//
@@ -193,13 +212,22 @@ p {
 //-------media queries------//
 
 @media (max-width: 800px) {
-  .all-cards {
+  .trip-list-wrapper {
     grid-gap: 0.5% 4%;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
-  .button-container {
+  nav {
     flex-direction: column;
+    height: 40vh;
+  }
+
+  .destination-photo {
+    width: 50vh;
+  }
+  
+  .login-display {
+    width: 82%;
   }
 
   .main-header {
@@ -211,21 +239,21 @@ p {
   }
 }
 
-@media (max-width: 640px) {
-  .all-cards {
-    grid-gap: 0.5% 5%;
-    grid-template-columns: repeat(2, 1fr);
-  }
+// @media (max-width: 640px) {
+//   .all-cards {
+//     grid-gap: 0.5% 5%;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
 
-  .button-container {
-    flex-direction: column;
-  }
+//   .button-container {
+//     flex-direction: column;
+//   }
 
-  .main-header {
-    height: 18vh;
-  }
+//   .main-header {
+//     height: 18vh;
+//   }
 
-  .search-input {
-    width: 80%;
-  }
-}
+//   .search-input {
+//     width: 80%;
+//   }
+// }
