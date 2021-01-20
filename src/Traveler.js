@@ -10,7 +10,7 @@ class Traveler {
     this.upcomingTrips = [];
     this.pastTrips = [];
     this.presentTrips = [];
-}
+  }
   filterAllTrips(tripData) {
     this.trips = tripData.filter(trip => trip.userID === this.id);
     return this.trips;
@@ -18,7 +18,7 @@ class Traveler {
 
   filterPendingTrips(tripData) {
     this.filterAllTrips(tripData);
-    this.pendingTrips = this.trips.filter(trip => trip.status ==='pending');
+    this.pendingTrips = this.trips.filter(trip => trip.status === 'pending');
     return this.pendingTrips;
   }  
 
@@ -40,7 +40,7 @@ class Traveler {
       const tripStartDates = parseInt(trip.date.split('/').join(''));
       const tripEndDates = tripStartDates + trip.duration;
       const todaysDate = parseInt(dateToday.split('/').join(''));
-      if(tripStartDates < todaysDate && tripEndDates > todaysDate){
+      if (tripStartDates < todaysDate && tripEndDates > todaysDate) {
         this.presentTrips.push(trip)
       }
     })
@@ -53,11 +53,11 @@ class Traveler {
     let getCostStats = tripsInYear.map(trip => {
       let totalTripCost = {};
       destinations.forEach(destination => {
-          if(trip.destinationID === destination.id) {
-            totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
-            totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-            totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
-          }
+        if (trip.destinationID === destination.id) {
+          totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
+          totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+          totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
+        }
       })
       return totalTripCost;
     });
