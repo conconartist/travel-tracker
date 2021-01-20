@@ -43,7 +43,7 @@ This application was created and coded by [Connie Hong](https://github.com/conco
 
 - Accesibility score in Lighthouse remains at 100 after Iteration 3
 
-![Lighthouse](https://user-images.githubusercontent.com/67291333/105119740-2eaede00-5a8e-11eb-9126-2c9c9c1f74a3.png)
+![Lighthouse](https://user-images.githubusercontent.com/67291333/105120258-27d49b00-5a8f-11eb-9a16-b5fca67f9751.png)
 - Functionality seems to be working and the design is responsive with media queries, keeping in mind both mobile and web devices
 - GET and POST appears to work well
 - All tests for classes have passed
