@@ -1,5 +1,3 @@
-import Trip from "./Trip";
-
 let domUpdates = {
 
     hideDashboard() {

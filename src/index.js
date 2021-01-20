@@ -3,7 +3,6 @@ import './css/base.scss';
 import domUpdates from './domUpdates.js';
 
 import Traveler from './Traveler.js';
-import TripRepository from './TripRepository.js'
 import Trip from './Trip.js';
 import Destination from './Destination.js';
 
@@ -14,7 +13,6 @@ const submitRequestButton = document.querySelector('.button-submit-request');
 
 let traveler, travelerId, trips, destinations;
 
-//DASHBOARD
 // let today = new Date().toISOString().slice(0, 10);
 let today = "2020/07/25";
 let year = '2020';

@@ -9,9 +9,6 @@ class Trip {
       this.status = tripData.status;
       this.suggestedActivities = tripData.suggestedActivities;
   }
-  updateTripStatus() {
-      //for agent 
-  }
 }
 
 export default Trip;
