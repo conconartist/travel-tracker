@@ -10,7 +10,7 @@ This project is a responsive web application that manages and tracks different t
 
 ## Setup
 
-This site is deployed on [GithubPages]()
+This site is deployed on [Vercel](https://travel-tracker-gamma.vercel.app/)
 
 If you would like to look at the code itself or run our test suites:
   1. Clone down this repo with  `git clone https://github.com/travel-tracker.git[what you want to name the repo]`
@@ -37,6 +37,7 @@ This application was created and coded by [Connie Hong](https://github.com/conco
 ## Project Planning
 
 [Miro Wireframing](https://miro.com/app/board/o9J_lYz9xYw=/)
+
 [Github Projectboard](https://github.com/conconartist/travel-tracker/projects/1)
 
 ## Future Iterations
