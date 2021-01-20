@@ -13,6 +13,7 @@ describe('Destination', () => {
     });
     it('should have an id', () => {
         expect(destination1.id).to.equal(destinations[0].id);
+        expect(destination2.id).to.equal(destinations[1].id);
     });
     it('should have a destination property', () => {
         expect(destination1.destination).to.equal("Lima, Peru");

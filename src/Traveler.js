@@ -10,7 +10,7 @@ class Traveler {
     this.upcomingTrips = [];
     this.pastTrips = [];
     this.presentTrips = [];
-}
+  }
   filterAllTrips(tripData) {
     this.trips = tripData.filter(trip => trip.userID === this.id);
     return this.trips;
@@ -18,34 +18,33 @@ class Traveler {
 
   filterPendingTrips(tripData) {
     this.filterAllTrips(tripData);
-    this.pendingTrips = this.trips.filter(trip => trip.status ==='pending');
+    this.pendingTrips = this.trips.filter(trip => trip.status === 'pending');
     return this.pendingTrips;
   }  
 
   filterUpcomingTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.upcomingTrips = this.trips.filter(trip => trip.status === 'approved' && parseInt(trip.status === trip.date.replaceAll('/', "")) > parseInt(dateToday.replaceAll('/', "")));
+    this.upcomingTrips = this.trips.filter(trip => trip.status === 'approved' && parseInt(trip.status === trip.date.split('/').join('')) > parseInt(dateToday.split('/').join('')));
     return this.upcomingTrips;
   }
 
   filterPastTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    this.pastTrips = this.trips.filter(trip => parseInt(trip.date.replaceAll('/', "")) < parseInt(dateToday.replaceAll('/', "")));
+    this.pastTrips = this.trips.filter(trip => parseInt(trip.date.split('/').join('')) < parseInt(dateToday.split('/').join('')));
     return this.pastTrips;
   }
 
   filterPresentTrips(tripData, dateToday) {
     this.filterAllTrips(tripData);
-    let presentTrips = [];
     this.trips.forEach(trip => {
-      const tripStartDates = parseInt(trip.date.replaceAll('/', ""));
+      const tripStartDates = parseInt(trip.date.split('/').join(''));
       const tripEndDates = tripStartDates + trip.duration;
-      let todaysDate = parseInt(dateToday.replaceAll('/', ""))
-      if(tripStartDates < todaysDate && tripEndDates > todaysDate){
-        presentTrips.push(trip)
+      const todaysDate = parseInt(dateToday.split('/').join(''));
+      if (tripStartDates < todaysDate && tripEndDates > todaysDate) {
+        this.presentTrips.push(trip)
       }
     })
-    return presentTrips;
+    return this.presentTrips;
   }
 
   determineTotalAmtSpent(tripData, year, destinations) {
@@ -54,11 +53,11 @@ class Traveler {
     let getCostStats = tripsInYear.map(trip => {
       let totalTripCost = {};
       destinations.forEach(destination => {
-          if(trip.destinationID === destination.id) {
-            totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
-            totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-            totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
-          }
+        if (trip.destinationID === destination.id) {
+          totalTripCost.totalLodging = destination.estimatedLodgingCostPerDay * trip.duration;
+          totalTripCost.totalFlightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+          totalTripCost.agentFee = (totalTripCost.totalLodging + totalTripCost.totalFlightCost) * 0.1;
+        }
       })
       return totalTripCost;
     });
