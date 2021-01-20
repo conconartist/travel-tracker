@@ -34,6 +34,11 @@ This application was created and coded by [Connie Hong](https://github.com/conco
 - Git workflow using GitHub Issues and Project Kanban Board
 - Miro for wireframing 
 
+## Project Planning
+
+[Miro Wireframing](https://miro.com/app/board/o9J_lYz9xYw=/)
+[Github Projectboard](https://github.com/conconartist/travel-tracker/projects/1)
+
 ## Future Iterations
 
 - Agent interaction as outlined in Iteration 4 of the spec
