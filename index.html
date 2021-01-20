@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Travel Tracker</title>
+  </head>
+  <body>
+    <nav>
+      <h1>TRAVEL TRACKER</h1>
+      <button id="button-log-out" class="button-nav" aria-label="log-out-button">Log Out</button>
+    </nav>
+    <main>
+      <header>
+        <h2 class="greeting"></h2>
+      </header>
+      <section class="login-display">
+        <div class="container-username">
+          <label for="input-username">Username:</label>
+          <input id="input-username" class="input-login" type="text" name="" placeholder="Enter Username">
+        </div>
+        <div class="container-password">
+          <label for="input-password">Password:</label>
+          <input id="input-password" class="input-login" type="text" name="" placeholder="Enter Password">
+        </div>
+          <button class="button-login" aria-label="login-button">LOGIN</button>
+          <p class="error-message"></p>
+      </section>
+      
+      <div class="dashboard-wrapper">
+        <article class="total-amount-spent">
+          <p class="total-amount-spent-header">Total Amount Spent in 2020 (agent fee included):</p>
+        </article>
+        <section class="present-trip">
+          <h3 class="heading-present-trip" aria-label="view-present-trips">PRESENT TRIP</h3>
+          <div class="trip-list-wrapper card-present-trip">
+          </div>
+        </section>
+        <section class="upcoming-trips">
+          <h3 class="heading-upcoming-trips" aria-label="view-upcoming-trips">UPCOMING TRIPS</h3>
+          <div class="trip-list-wrapper card-upcoming-trips">
+          </div>
+        </section>
+        <section class="pending-trips">
+          <h3 class="heading-pending-trips" aria-label="view-pending-trips">PENDING TRIPS</h3>
+          <div class="trip-list-wrapper card-pending-trips">
+          </div>
+        </section>
+        <section class="book-trip">
+          <h3 class="heading-book-trip" aria-label="view-book-trip-form">BOOK A TRIP</h4>
+          <div class="card-book-trip">
+            <form aria-label="book-trip-form">
+              <label for="book-date">Date:</label>
+              <input class="date-input" type="date" id="book-date" name="date">
+              <select class="destination-menu" aria-label="pull-down-destination-menu">
+                <option>Destination</option>
+              </select>
+              <label for="book-duration">Duration:</label>
+              <input class="duration-input" type="number" id="book-duration" name="duration" min="1" placeholder="How many days?">
+              <label for="book-travelers">Number of Travelers:</label>
+              <input class="travelers-input" type="number" id="book-travelers" name="travelers" min="1" max="20" placeholder="Enter #">
+              <button class="button-cost-estimate" aria-label="cost-estimate-button">Calculate Cost</button>
+              <button class="button-submit-request hidden" aria-label="submit-request-button">Submit Your Request</button>
+            </form>
+          </div>
+        </section>
+        <section class="past-trips">
+          <h3 class="heading-past-trip" aria-label="view-past-trips">PAST TRIPS</h4>
+          <div class="trip-list-wrapper card-past-trip">
+          </div>
+        </section>
+      </div>
+    </main>
+  <script src="main.bundle.js"></script></body>
+</html>
