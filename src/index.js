@@ -13,8 +13,8 @@ const submitRequestButton = document.querySelector('.button-submit-request');
 
 let traveler, travelerId, trips, destinations;
 
-// let today = new Date().toISOString().slice(0, 10);
-let today = "2020/07/25";
+let today = new Date().toISOString().slice(0, 10);
+// let today = "2020/07/25";
 let year = '2020';
 
 const instantiateUser = (travelers, userLogin) => {
